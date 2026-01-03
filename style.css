@@ -390,16 +390,31 @@ img {
     left: 0;
     width: 100%;
     height: 70px;
-    background: #000; /* اللون الأسود الصريح في البداية */
-    z-index: 2400;
+    background: #000;
+    /* اجعل الرقم هنا أكبر من رقم z-index الخاص باللايت بوكس */
+    z-index: 200000; 
     display: flex;
     align-items: center;
     justify-content: flex-end;
     padding: 0 15px;
     border-bottom: 1px solid var(--gold);
-    transition: all 0.4s ease-in-out; /* انتقال ناعم لجميع الخصائص */
 }
+@media (max-width: 991px) {
+    #lightbox {
+        /* إضافة padding علوي يساوي ارتفاع الشريط (70px) */
+        padding-top: 80px !important; 
+        align-items: flex-start; /* يبدأ المحتوى من الأعلى لضمان الرؤية */
+    }
 
+    .lightbox-content-wrapper {
+        max-height: 80vh; /* تقليل الارتفاع قليلاً ليتناسب مع وجود الشريط */
+    }
+    
+    /* إخفاء زر الإغلاق الافتراضي إذا كان يتعارض مع الشريط أو نقله لأسفل */
+    #lightbox-close {
+        top: 85px; /* ينزل أسفل الشريط العلوي */
+    }
+}
 /* لضمان ترتيب اللوجو ثم الاسم من اليسار لليمين */
 .mobile-brand-container {
     display: flex;
@@ -709,12 +724,7 @@ header#top {
         font-size: 1rem;
     }
 }
-.lightbox-info {
-    text-align: center;
-    padding: 20px;
-    background: rgba(0,0,0,0.8);
-    border-radius: 0 0 15px 15px;
-}
+
 
 .order-btn {
     display: inline-flex;
@@ -738,30 +748,7 @@ header#top {
     color: #fff;
 }
 
-/* تحسين شكل الصور في اللايت بوكس */
-#lightbox-img {
-    max-height: 60vh;
-    border-radius: 15px 15px 0 0;
-    border: 1px solid var(--gold);
-    
-}
-/* تنسيق نص الوصف في اللايت بوكس */
-#lightbox-desc {
-    color: #ffffff !important; /* لون أبيض ناصع */
-    font-size: 1.1rem;
-    line-height: 1;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    font-weight: 300;
-}
 
-/* تنسيق عنوان المنتج في اللايت بوكس */
-#lightbox-title {
-    color: var(--gold); /* الحفاظ على اللون الذهبي للعنوان */
-    font-size: 1rem;
-    margin-top: 15px;
-    font-weight: 700;
-}
 
 /* تنسيق زر اطلب الآن */
 .order-btn {
@@ -784,117 +771,9 @@ header#top {
     transform: translateY(-3px);
     color: #fff !important;
 }
-#lightbox-desc {
-    color: #ffffff !important; /* تأكيد اللون الأبيض */
-    margin: 15px 0;
-    font-size: 1.1rem;
-    direction: rtl;
-    text-align: center;
-}
 
-.order-btn {
-    background-color: #25d366;
-    color: white !important;
-    padding: 12px 40px;
-    border-radius: 50px;
-    text-decoration: none;
-    display: inline-block;
-    font-weight: bold;
-    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
-}
-/* الحاوية الرئيسية للايت بوكس */
-#lightbox {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    left: 0;
-    top: 15px;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9); /* خلفية داكنة جداً للتركيز */
-    backdrop-filter: blur(8px); /* تأثير تغبيش خلفي */
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
-
-/* صندوق المحتوى الصغير في المنتصف */
-.lightbox-content-wrapper {
-    background: #111;
-    max-width: 900px; /* أقصى عرض للكمبيوتر */
-    width: 100%;
-    border-radius: 20px;
-    overflow: hidden;
-    display: flex; /* لعمل تقسيم صورة بجانب نص في الكمبيوتر */
-    flex-direction: column; /* الوضع الافتراضي للجوال */
-    border: 1px solid var(--gold);
-    box-shadow: 0 0 50px rgba(0,0,0,0.8);
-    position: relative;
-    animation: zoomIn 0.3s ease-out;
-}
-
-/* تنسيق الصورة */
-#lightbox-img {
-    width: 100%;
-    max-height: 70vh; /* لا تتجاوز 70% من ارتفاع الشاشة */
-    object-fit: cover;
-}
-
-/* منطقة النصوص أسفل الصورة */
-.lightbox-info-area {
-    padding: 30px;
-    text-align: center;
-    background: #111;
-}
-
-#lightbox-title {
-    color: var(--gold);
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-}
-
-#lightbox-desc {
-    color: #ffffff !important;
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 25px;
-}
-
-/* زر الإغلاق */
-#lightbox-close {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    color: #fff;
-    font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
-    z-index: 10001;
-    transition: 0.3s;
-}
 
 /* --- تعديلات خاصة بشاشات الكمبيوتر فقط --- */
-@media (min-width: 992px) {
-    .lightbox-content-wrapper {
-        flex-direction: row; /* الصورة بجانب النص */
-        max-height: 80vh;
-        align-items: stretch;
-    }
-
-    #lightbox-img {
-        width: 55%; /* الصورة تأخذ 55% من العرض */
-        max-height: 80vh;
-        object-fit: cover;
-    }
-
-    .lightbox-info-area {
-        width: 45%; /* النص يأخذ 45% */
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 40px;
-    }
-}
 
 @keyframes zoomIn {
     from { transform: scale(0.8); opacity: 0; }
@@ -1020,4 +899,418 @@ header#top {
         justify-content: center;
         overflow-y: auto;
     }
+}
+/* 1. المتغيرات والأساسيات (Variables & Reset) */
+:root { 
+    --gold: #d4af37; 
+    --gold-bright: #f1d592;
+    --dark: #050505; 
+    --card: #111; 
+    --text: #f1d592; 
+}
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+}
+
+body { 
+    font-family: 'Cairo', sans-serif; 
+    background-color: var(--dark); 
+    color: #fff; 
+    overflow-x: hidden; 
+}
+
+/* 2. توزيع المساحات (Layout Adjustments) */
+@media (min-width: 992px) { body { padding-top: 80px; } }
+@media (max-width: 991px) { body { padding-top: 70px; } }
+
+/* 3. الهيدر واللوجو (Header & Logo) */
+.main-logo {
+    width: 150px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+    transition: 0.3s transform;
+}
+.main-logo:hover { transform: scale(1.05); }
+
+header {
+    min-height: 100vh; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;
+    background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.95)), 
+                url('https://images.unsplash.com/photo-1643034738686-d69e7bc047e1?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover; 
+    background-position: center; 
+    text-align: center; 
+    border-bottom: 4px solid var(--gold);
+    padding: 50px 20px;
+}
+
+header h1 { 
+    font-family: 'Playfair Display', serif; 
+    font-size: clamp(2.5rem, 8vw, 5rem); 
+    color: var(--gold); 
+    text-shadow: 2px 2px 15px rgba(212,175,55,0.4);
+    letter-spacing: 5px; 
+}
+
+/* 4. القوائم والتنقل (Navigation) */
+.desktop-nav, .mobile-nav {
+    position: fixed; top: 0; left: 0; width: 100%;
+    background: #000; border-bottom: 1px solid var(--gold); z-index: 9999;
+}
+
+.desktop-nav {
+    height: 80px; padding: 0 5%; display: flex; align-items: center; transition: 0.4s;
+}
+
+.desktop-nav.scrolled {
+    background: rgba(0, 0, 0, 0.6) !important;
+    backdrop-filter: blur(10px);
+    height: 70px;
+}
+
+.nav-links {
+    display: flex; gap: 35px; position: absolute; left: 50%; transform: translateX(-50%);
+}
+
+.nav-links a {
+    color: #fff !important; text-decoration: none; font-weight: 700;
+    position: relative; transition: 0.3s;
+}
+
+.nav-links a:hover, .active-link { color: var(--gold) !important; }
+
+.nav-links a::after {
+    content: ''; position: absolute; width: 0; height: 2px; bottom: -5px;
+    left: 50%; background: var(--gold); transition: 0.3s; transform: translateX(-50%);
+}
+
+.nav-links a:hover::after { width: 100%; }
+
+.mobile-nav {
+    height: 70px; display: none; align-items: center; justify-content: flex-end; padding: 0 15px;
+}
+
+@media (max-width: 991px) {
+    .mobile-nav { display: flex; }
+    .desktop-nav { display: none; }
+}
+
+/* 5. شبكة المنتجات (Products Grid) */
+.grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 25px; 
+    max-width: 1400px; 
+    margin: 40px auto; 
+    padding: 0 20px;
+}
+
+.product-card { 
+    background: var(--card); 
+    border: 1px solid #222; 
+    position: relative;
+    overflow: hidden; 
+    transition: 0.4s; 
+    cursor: pointer;
+}
+
+.product-card:hover { border-color: var(--gold); transform: translateY(-8px); }
+
+.product-card img { 
+    width: 100%; 
+    height: 380px; 
+    object-fit: cover; 
+    filter: brightness(0.8); 
+    transition: 0.6s; 
+}
+
+.product-card:hover img { filter: brightness(1.1); scale: 1.05; }
+
+/* 6. نظام اللايت بوكس الموحد (Unified Lightbox System) */
+#lightbox {
+    display: none; 
+    position: fixed; 
+    inset: 0; 
+    z-index: 100000;
+    background-color: rgba(0, 0, 0, 0.92); 
+    backdrop-filter: blur(12px);
+    justify-content: center; 
+    align-items: center; 
+    padding: env(safe-area-inset-top) 15px env(safe-area-inset-bottom) 15px;
+}
+
+.lightbox-content-wrapper {
+    background: #111; 
+    width: 100%; 
+    max-width: 950px; 
+    max-height: 90vh;
+    border-radius: 20px; 
+    display: flex; 
+    flex-direction: column;
+    border: 1px solid rgba(212, 175, 55, 0.3); 
+    position: relative;
+    overflow-y: auto; 
+    animation: zoomIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#lightbox-img {
+    width: 100%; 
+    height: auto; 
+    max-height: 55vh; 
+    object-fit: contain; 
+    background: #000;
+}
+
+/* الحاوية التي تحتوي على النصوص والزر */
+.lightbox-info-area { 
+    padding: 30px; 
+    width: 100%; 
+    display: flex !important;           /* إجبار الفليكس */
+    flex-direction: column !important;  /* العناصر فوق بعضها */
+    align-items: center !important;     /* التوسط الأفقي الإجباري */
+    justify-content: center !important; /* التوسط العمودي الإجباري */
+    text-align: center !important;      /* توسيط النصوص */
+}
+#lightbox-title { color: var(--gold); font-size: 1.8rem; margin-bottom: 12px; }
+
+#lightbox-desc { color: #fff !important; font-size: 1.1rem; line-height: 1.7; margin-bottom: 25px; direction: rtl; }
+
+/* زر الطلب - تعديلات إضافية للتأكد من التمركز */
+/* زر اطلب الآن */
+.order-btn {
+    display: inline-flex !important;   
+    align-items: center !important; 
+    justify-content: center !important;
+    gap: 12px; 
+    background-color: #25d366;
+    color: #fff !important; 
+    padding: 14px 40px; 
+    border-radius: 50px; 
+    text-decoration: none;
+    font-weight: 700; 
+    transition: 0.3s;
+    box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2);
+    
+    /* منع الانزياح لليمين */
+    margin-right: auto !important;
+    margin-left: auto !important;
+    width: fit-content !important; 
+}
+
+.order-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    background-color: #1ebe57;
+}
+
+.order-btn:hover, .whatsapp-header-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    background-color: #1ebe57;
+}
+
+/* 8. أدوات التحكم (Controls) */
+#lightbox-close {
+    position: absolute; top: 15px; right: 20px; color: #fff;
+    font-size: 45px; cursor: pointer; z-index: 10001; line-height: 1;
+}
+
+.nav-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: rgba(212, 175, 55, 0.1); color: #fff;
+    border: 1px solid var(--gold); font-size: 28px; padding: 12px 18px;
+    cursor: pointer; border-radius: 50%; z-index: 100001; transition: 0.3s;
+}
+.prev-arrow { right: 30px; } .next-arrow { left: 30px; }
+
+/* 9. التجاوب النهائي (Final Responsiveness) */
+@media (min-width: 992px) {
+    .lightbox-content-wrapper { flex-direction: row; max-height: 85vh; overflow: hidden; }
+    #lightbox-img { width: 55%; max-height: 100%; object-fit: cover; }
+    .lightbox-info-area { width: 45%; display: flex; flex-direction: column; justify-content: center; overflow-y: auto; }
+}
+
+@media (max-width: 768px) {
+    .nav-arrow { display: none !important; }
+    #lightbox-title { font-size: 1.5rem; }
+    header h1 { letter-spacing: 2px; }
+}
+
+/* 10. الحركات (Animations) */
+@keyframes zoomIn { 
+    from { opacity: 0; transform: scale(0.92); } 
+    to { opacity: 1; transform: scale(1); } 
+}
+
+@keyframes fadeInUp { 
+    from { opacity: 0; transform: translateY(30px); } 
+    to { opacity: 1; transform: translateY(0); } 
+}
+/* 1. جعل شريط الهاتف فوق كل شيء في الكون */
+.mobile-nav {
+    z-index: 999999 !important; /* رقم ضخم لضمان التفوق */
+    background: #000 !important; /* خلفية سوداء ثابتة */
+}
+
+/* 2. تعديل اللايت بوكس ليكون تحت الشريط */
+#lightbox {
+    z-index: 999998 !important; /* أقل بمرتبة واحدة من شريط الهاتف */
+    padding-top: 70px !important; /* إزاحة تساوي ارتفاع شريط الهاتف */
+    align-items: center; 
+}
+
+/* 3. تعديل زر الإغلاق لكي لا يختفي خلف الشريط */
+#lightbox-close {
+    top: 85px !important; /* ينزل لأسفل بمقدار 15px إضافية عن الشريط */
+    right: 20px;
+}
+
+/* 4. في الهواتف فقط: التأكد من عدم تداخل المحتوى */
+@media (max-width: 991px) {
+    .lightbox-content-wrapper {
+        margin-top: 10px; /* يعطي مساحة بسيطة بين المحتوى والشريط */
+        max-height: calc(90vh - 70px) !important; /* يمنع خروج المحتوى عن الشاشة */
+    }
+}
+/* الحاوية الرئيسية للمعلومات */
+.lightbox-info-area { 
+    padding: 25px; 
+    width: 100%; 
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;    /* يضمن توسيط كل عنصر ككتلة واحدة */
+    justify-content: center !important; 
+    text-align: center !important;     /* يضمن توسيط أسطر النص */
+}
+
+/* العنوان */
+#lightbox-title { 
+    color: var(--gold); 
+    font-size: 1.4rem; 
+    margin-bottom: 10px; 
+    width: 100%;
+    text-align: center !important;
+}
+
+/* الوصف */
+#lightbox-desc { 
+    color: #fff !important; 
+    font-size: 0.95rem; 
+    line-height: 1.6; 
+    margin-bottom: 25px; 
+    width: 100%;
+    max-width: 90%; 
+    text-align: center !important; /* التمركز للنص حتى لو كان طويلاً */
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* زر اطلب الآن - الثبات المطلق */
+.order-btn {
+    display: inline-flex !important; 
+    align-items: center !important; 
+    justify-content: center !important;
+    gap: 12px; 
+    background-color: #25d366;
+    color: #fff !important; 
+    padding: 12px 35px; 
+    border-radius: 50px; 
+    text-decoration: none;
+    font-weight: 700; 
+    font-size: 0.95rem;
+    
+    /* الحل الجذري للتوسيط */
+    margin: 0 auto !important;         /* صفر هوامش علوية وسفلية (أو حسب رغبتك) وتلقائي للجانبين */
+    width: fit-content !important;     /* يأخذ عرض النص فقط ولا يتمدد */
+    position: relative;
+    z-index: 5;
+}
+
+.order-btn:hover {
+    transform: translateY(-3px);
+    background-color: #1ebe57;
+}
+
+/* تعديل للهاتف لضمان عدم حدوث تداخل */
+@media (max-width: 768px) {
+    #lightbox-desc {
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+    }
+    .order-btn {
+        padding: 10px 30px;
+        font-size: 0.9rem;
+    }
+}
+/* الحاوية التي تجمع كل شيء */
+.lightbox-info-area { 
+    padding: 25px; 
+    width: 100%; 
+    display: flex !important;
+    flex-direction: column !important;
+    /* السر هنا: التوسيط الأفقي الإجباري */
+    align-items: center !important;    
+    justify-content: center !important; 
+    /* تصفير أي محاذاة موروثة */
+    text-align: center !important;     
+    direction: ltr !important; /* نحول الحاوية لـ ltr لضمان التوسيط المطلق للزر */
+}
+
+/* العنوان - نعيده rtl لكي يظهر النص العربي صحيحاً لكن بوضعية السنتر */
+#lightbox-title { 
+    color: var(--gold); 
+    font-size: 1.3rem; 
+    margin-bottom: 10px; 
+    width: 100%;
+    direction: rtl !important;
+    text-align: center !important;
+}
+
+/* الوصف - نعيده rtl لكي يظهر النص العربي صحيحاً لكن بوضعية السنتر */
+#lightbox-desc { 
+    color: #fff !important; 
+    font-size: 0.9rem; 
+    line-height: 1.6; 
+    margin-bottom: 25px; 
+    width: 100%;
+    max-width: 90%; 
+    direction: rtl !important;
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* زر اطلب الآن - الآن أصبح "جزيرة مستقلة" في المنتصف */
+.order-btn {
+    display: inline-flex !important; 
+    align-items: center !important; 
+    justify-content: center !important;
+    gap: 10px; 
+    background-color: #25d366;
+    color: #fff !important; 
+    padding: 12px 30px; 
+    border-radius: 50px; 
+    text-decoration: none;
+    font-weight: 700; 
+    font-size: 0.95rem;
+    
+    /* منع أي انحياز لليمين نهائياً */
+    margin: 0 auto !important; 
+    width: fit-content !important; 
+    min-width: 200px; /* لضمان حجم ثابت ومريح للضغط */
+    flex-shrink: 0; /* يمنع الزر من الانضغاط إذا كان النص طويلاً */
 }
