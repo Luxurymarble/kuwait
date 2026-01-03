@@ -177,7 +177,7 @@ h4.custom-title {
           box-shadow: 0 0 50px rgba(212, 175, 55, 0.5); /* إضافة توهج ذهبي */
           border-radius: 10px;
         }
-        #lightbox-close { position: absolute; top: 20px; right: 30px; color: var(--gold); font-size: 40px; cursor: pointer; }
+        #lightbox-close { position: absolute; top: 20px; right: 30px; color: var(--gold); font-size: 10px; cursor: pointer; }
 
         .experience { background: #ffffff; padding: 60px 5%; display: flex; justify-content: space-around; flex-wrap: wrap; text-align: center; }
         .exp-item h2 { color: var(--gold); font-size: 2.5rem; margin-bottom: 5px; }
@@ -743,12 +743,13 @@ header#top {
     max-height: 60vh;
     border-radius: 15px 15px 0 0;
     border: 1px solid var(--gold);
+    
 }
 /* تنسيق نص الوصف في اللايت بوكس */
 #lightbox-desc {
     color: #ffffff !important; /* لون أبيض ناصع */
     font-size: 1.1rem;
-    line-height: 1.6;
+    line-height: 1;
     margin-top: 10px;
     margin-bottom: 20px;
     font-weight: 300;
@@ -757,7 +758,7 @@ header#top {
 /* تنسيق عنوان المنتج في اللايت بوكس */
 #lightbox-title {
     color: var(--gold); /* الحفاظ على اللون الذهبي للعنوان */
-    font-size: 1.8rem;
+    font-size: 1rem;
     margin-top: 15px;
     font-weight: 700;
 }
@@ -807,7 +808,7 @@ header#top {
     position: fixed;
     z-index: 9999;
     left: 0;
-    top: 0;
+    top: 15px;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.9); /* خلفية داكنة جداً للتركيز */
@@ -948,5 +949,75 @@ header#top {
 @media (min-width: 769px) {
     .nav-arrow {
         display: block;
+    }
+}
+/* الحاوية الخلفية */
+#lightbox {
+    display: none;
+    position: fixed;
+    inset: 0; /* بديل متوافق لـ top, right, bottom, left: 0 */
+    z-index: 99999;
+    background-color: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+    padding: env(safe-area-inset-top) 15px env(safe-area-inset-bottom) 15px; /* يراعي نوتش الآيفون وأشرطة المتصفح */
+}
+
+/* صندوق المحتوى المرن */
+.lightbox-content-wrapper {
+    background: #111;
+    width: 100%;
+    max-width: 900px; /* العرض الأقصى للكمبيوتر */
+    max-height: 92vh; /* يضمن عدم خروج المحتوى عن ارتفاع الشاشة */
+    border-radius: 15px;
+    overflow-y: auto; /* يسمح بالتمرير إذا كان المحتوى طويلاً على الهواتف الصغيرة */
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+    -webkit-overflow-scrolling: touch; /* سلاسة التمرير في متصفح Safari */
+}
+
+/* تنسيق الصورة المتجاوب */
+#lightbox-img {
+    width: 100%;
+    height: auto;
+    max-height: 60vh; /* يخصص مساحة كافية للنص والزر بالأسفل */
+    object-fit: contain; /* يمنع قص أجزاء من الصورة في أي متصفح */
+    background: #000;
+    flex-shrink: 0; /* يمنع انضغاط الصورة */
+}
+
+/* منطقة النصوص والزر */
+.lightbox-info-area {
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* تعديلات خاصة للشاشات الكبيرة (Desktop) */
+@media (min-width: 992px) {
+    .lightbox-content-wrapper {
+        flex-direction: row; /* الصورة بجانب النص */
+        align-items: stretch;
+        max-height: 80vh;
+        overflow: hidden; /* يمنع السكرول في الكمبيوتر لجمالية التصميم */
+    }
+
+    #lightbox-img {
+        width: 50%;
+        max-height: 100%;
+        object-fit: cover;
+    }
+
+    .lightbox-info-area {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        overflow-y: auto;
     }
 }
