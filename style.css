@@ -1,0 +1,952 @@
+
+        :root { 
+            --gold: #d4af37; 
+            --gold-bright: #f1d592;
+            --dark: #050505; 
+            --card: #111; 
+            --text: #f1d592; 
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cairo', sans-serif; background-color: var(--dark); color: #000000; scroll-behavior: smooth; overflow-x: hidden; }
+
+        /* تنسيق اللوجو */
+        .main-logo {
+            width:150px;
+            height: auto;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 10px rgb(255, 255, 255));
+            transition: 0.3s;
+        }
+        
+        .main-logo:hover { transform: scale(1.05); }
+
+        header {
+            min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1643034738686-d69e7bc047e1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size: cover; background-position: center; text-align: center; border-bottom: 4px solid var(--gold);
+            position: relative; padding: 50px 0;
+        }
+        header h1 { 
+            font-family: 'Playfair Display', serif; font-size: clamp(3rem, 10vw, rem); 
+            color: var(--gold); text-shadow: 2px 2px 15px rgba(212,175,55,0.4);
+            letter-spacing: 5px; margin-bottom: 10px;
+        }
+        header h3 { 
+    font-size: clamp(1.2rem, 2vw, 1.8rem); 
+    color: #fff; 
+    margin-top: 20px; 
+    /* تحديد عرض أقصى للنص لضمان نزوله تحت بعضه بشكل أنيق */
+    max-width: 800px; 
+    padding: 0 20px; 
+    font-weight: 300; 
+    line-height: 1.6; 
+    /* التوسيط التلقائي للهوامش */
+    margin-right: auto;
+    margin-left: 50px;
+}
+h4.custom-title {
+    color: #ffffff;      /* اللون الأبيض */
+    font-size: 1.2rem;   /* حجم الخط، يمكنك تغييره */
+    font-weight: 500;    /* ثقل الخط */
+    margin: 10px 0;      /* مسافة من الأعلى والأسفل */
+    text-align: center;  /* توسيط النص */
+    font-family: 'Cairo', sans-serif; /* نوع الخط المستخدم في موقعك */
+}
+        .intro { 
+            font-size: clamp(1.2rem, 4vw, 1.8rem); color: #fff; margin-top: 20px; 
+            max-width: 900px; padding: 0 20px; font-weight: 300; line-height: 1.6;
+        }
+
+        /* تنسيق أزرار الأقسام - تم تعديل الحجم والمسافة */
+        .category-buttons {
+            display: flex;
+            gap: 25px;
+            margin-top: 70px; /* نزلناهم لتحت شوية */
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+       .cat-btn {
+    width: 180px; 
+    height: 140px; 
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--gold); /* خط أنحف ليعطي فخامة */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--gold);
+    text-decoration: none;
+    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 15px; /* الحواف الحادة تعطي طابعاً رسمياً وفخماً */
+}
+
+.cat-btn:hover {
+    background: var(--gold);
+    color: #000;
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(212,175,55,0.2);
+}
+        .cat-btn i { 
+            font-size: 3.5rem; /* كبرنا حجم الأيقونة */
+            margin-bottom: 15px; 
+        }
+        .cat-btn span { font-weight: 700; font-size: 1.2rem; }
+        .cat-btn:hover {
+            background: var(--gold);
+            color: #000;
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(212,175,55,0.3);
+        }
+
+        /* Sidebar Styling */
+        .btn{
+            position: fixed; top: 15px; right: 25px; height: 45px; width: 45px;
+            text-align: center; background: var(--gold); border-radius: 3px;
+            cursor: pointer; transition: right 0.4s ease; z-index: 3000;
+        }
+        .btn.click{ right: 260px; background: #1b1b1b; }
+        .btn span{ color: white; font-size: 25px; line-height: 45px; }
+        .sidebar{
+            position: fixed; width: 250px; height: 100%; right: -250px;
+            background: #1b1b1b; transition: right 0.4s ease; z-index: 2999;
+        }
+        .sidebar.show{ right: 0px; }
+        .sidebar .text{
+            color: gold; font-size: 22px; font-weight: 600; line-height: 65px;
+            text-align: center; background: #1e1e1e; border-bottom: 1px solid var(--gold);
+        }
+        nav ul{ list-style: none; }
+        nav ul li{ line-height: 60px; border-top: 1px solid rgba(255,255,255,0.1); }
+        nav ul li a{
+            position: relative; color: white; text-decoration: none; font-size: 16px;
+            padding-right: 25px; display: block; width: 100%; transition: 0.3s;
+        }
+        nav ul li a:hover, nav ul li.active a { color: var(--gold); background: #1e1e1e; }
+
+        /* Sections */
+        /* تعديل مدة الظهور لتكون ثانية كاملة (أو 1.5s لبطء أكثر) */
+.section-content { 
+    display: none; 
+    padding: 80px 5%; 
+    animation: fadeInUp 1.2s ease-out; /* غيرنا الرقم من 0.8 إلى 1.2 */
+}
+
+@keyframes fadeInUp { 
+    from { opacity: 0; transform: translateY(30px); } 
+    to { opacity: 1; transform: translateY(0); } 
+}
+
+/* أضف هذا السطر لمنع التقطيع أثناء التمرير */
+.section-content { 
+    will-change: opacity, transform; 
+    backface-visibility: hidden;
+}
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1400px; margin: auto; }
+        .product-card { 
+            background: var(--card); border: 1px solid #333; position: relative;
+            overflow: hidden; transition: 0.5s; cursor: pointer;
+        }
+        .product-card:hover { border-color: var(--gold); transform: translateY(-10px); }
+        .product-card img { width: 100%; height: 400px; object-fit: cover; filter: brightness(0.7); transition: 0.7s; }
+        .product-card:hover img { filter: brightness(1.1) scale(1.05); }
+        
+        .info { 
+            padding: 20px; text-align: center; background: linear-gradient(to top, #000, transparent);
+            position: absolute; bottom: 0; width: 100%;
+        }
+        .info h3 { color: var(--gold); font-size: 1.2rem; }
+
+        /* Lightbox */
+        #lightbox {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95);
+            display: none; justify-content: center; align-items: center; z-index: 9999;
+        }
+        #lightbox > div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        #lightbox img {
+          max-width: 90%;
+          max-height: 80%;
+          border: 5px solid var(--gold);
+          box-shadow: 0 0 50px rgba(212, 175, 55, 0.5); /* إضافة توهج ذهبي */
+          border-radius: 10px;
+        }
+        #lightbox-close { position: absolute; top: 20px; right: 30px; color: var(--gold); font-size: 40px; cursor: pointer; }
+
+        .experience { background: #ffffff; padding: 60px 5%; display: flex; justify-content: space-around; flex-wrap: wrap; text-align: center; }
+        .exp-item h2 { color: var(--gold); font-size: 2.5rem; margin-bottom: 5px; }
+        
+        footer { padding: 0px 5%; background: #000; text-align: center; border-top: 1px solid #222; }
+        .contact-link { color: var(--gold); text-decoration: none; font-size: 1.2rem; margin: 0 15px; display: inline-flex; align-items: center; gap: 8px; }
+
+        .floating { position: fixed; bottom: 30px; left: 30px; display: flex; flex-direction: column; gap: 15px; z-index: 2000; }
+        .f-icon { width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 25px; text-decoration: none; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+        .f-wa { background: #25d366; } .f-ig { background: linear-gradient(45deg, #f09433, #bc1888); }
+        
+        #about-us { text-align: center; line-height: 2; max-width: 800px; margin: auto; }
+        #about-us h2 { color: var(--gold); margin-bottom: 20px; font-size: 2.5rem; }
+        /* تحسين نعومة التمرير ومنع تعليق المتصفح */
+html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* تحسين أداء كروت المنتجات */
+.product-card {
+    will-change: transform; /* يخبر المتصفح بالاستعداد للحركة ليكون أسرع */
+    backface-visibility: hidden;
+}
+
+/* جعل الصور تظهر بنعومة عند التحميل */
+img {
+    transition: opacity 0.5s ease-in-out;
+}
+* {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+/* تنسيق شريط الكمبيوتر */
+/* الشريط في حالته العادية (أعلى الصفحة) */
+.desktop-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: #000000; /* اللون الأساسي */
+    border-bottom: 2px solid var(--gold);
+    z-index: 9999;
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    transition: all 0.5s ease; /* سرعة التحول للشفافية */
+}
+
+/* الكلاس الذي سيتم إضافته عند التمرير لجعل الشريط شفافاً */
+.desktop-nav.scrolled {
+    background: rgba(0, 0, 0, 0.4) !important; /* درجة الشفافية - 0.4 تعني شفاف بنسبة 60% */
+    backdrop-filter: blur(8px); /* لمسة فخامة: تغبيش المحتوى خلف الشريط */
+    height: 70px; /* تصغير بسيط للارتفاع عند التمرير لإعطاء إحساس بالرشاقة */
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* توزيع: فراغ - روابط - لوجو */
+    width: 100%;
+    height: 100%;
+}
+.nav-links {
+    display: flex;
+    gap: 35px;
+    margin: 0 auto; /* هذا يضمن دفعها للمنتصف */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.logo-link {
+    margin-right: auto; /* يدفع اللوجو لأقصى اليسار في نظام RTL */
+    display: flex;
+    align-items: center;
+    z-index: 10;
+}
+.nav-container::before {
+    content: "";
+    width: 60px; /* نفس عرض اللوجو تقريباً */
+    height: 1px;
+}
+.nav-links a, .nav-links a:visited {
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-weight: 700;
+    font-size: 1.1rem;
+    position: relative;
+    padding: 5px 0;
+}
+
+.nav-logo {
+    height: 55px; /* تكبير بسيط للوجو ليظهر بوضوح */
+    width: auto;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    transition: 0.3s;
+}
+
+.nav-logo:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px var(--gold);
+}
+.logo-link:hover .nav-logo {
+    border-color: #fff; /* تغيير لون إطار اللوجو للأبيض عند الوقوف عليه */
+    box-shadow: 0 0 20px var(--gold); /* توهج ذهبي حول اللوجو */
+    transform: scale(1.05);
+}
+
+/* تعديل المسافات بين الروابط لتناسب الترتيب الجديد */
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 25px;
+    font-weight: 700;
+    position: relative;
+    transition: all 0.4s ease; /* سرعة استجابة التأثير */
+}
+
+/* تأثير عند تمرير الماوس */
+.nav-links a:hover {
+    color: var(--gold); /* يتغير اللون للذهبي */
+    text-shadow: 0 0 8px rgba(212, 175, 55, 0.7), 0 0 15px rgba(212, 175, 55, 0.5); /* توهج ذهبي */
+    transform: translateY(-2px); /* حركة بسيطة للأعلى */
+    display: inline-block;
+}
+
+/* إضافة خط سفلي ينمو من المنتصف عند الوقوف على الرابط */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 50%;
+    background: var(--gold);
+    transition: all 0.4s ease;
+    transform: translateX(-50%);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* --- التحكم في الظهور والاختفاء --- */
+
+/* للهواتف (أصغر من 992 بكسل) */
+@media (max-width: 991px) {
+    .desktop-nav {
+        display: none; /* إخفاء بار الكمبيوتر */
+    }
+    .btn {
+        display: block; /* إظهار زر السايد بار */
+    }
+}
+
+/* للكمبيوتر (أكبر من 992 بكسل) */
+@media (min-width: 992px) {
+    .btn {
+        display: none; /* إخفاء زر السايد بار */
+    }
+    .sidebar {
+        display: none; /* إخفاء السايد بار نفسه */
+    }
+    header {
+        margin-top: 70px; /* تعويض مساحة البار العلوي */
+    }
+}
+/* الزر في حالته الطبيعية */
+.btn {
+    position: fixed;
+    top: 15px;
+    right: 25px;
+    height: 45px;
+    width: 45px;
+    background: var(--gold);
+    z-index: 3000;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    transition: all 0.3s ease; /* سرعة الاختفاء والظهور */
+}
+
+/* الحالة الجديدة: إخفاء الأيقونة تماماً عند فتح السايد بار */
+.btn.click {
+    opacity: 0;
+    pointer-events: none; /* لمنع الضغط عليه وهو مخفي */
+    visibility: hidden;
+}
+
+/* زر الإغلاق داخل السايد بار (اختياري) */
+/* يفضل إضافة زر إغلاق داخل السايد بار ليتمكن المستخدم من العودة */
+.sidebar .close-btn {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    font-size: 30px;
+    color: var(--gold);
+    cursor: pointer;
+}
+/* تنسيق شريط الهاتف */
+/* تنسيق الحاوية داخل شريط الهاتف */
+/* تنسيق شريط الهاتف لنقل المحتوى لليسار */
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background: #000; /* اللون الأسود الصريح في البداية */
+    z-index: 2400;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 15px;
+    border-bottom: 1px solid var(--gold);
+    transition: all 0.4s ease-in-out; /* انتقال ناعم لجميع الخصائص */
+}
+
+/* لضمان ترتيب اللوجو ثم الاسم من اليسار لليمين */
+.mobile-brand-container {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: 12px; /* المسافة بين اللوجو والاسم */
+    /* الترتيب: row-reverse في وضع RTL يجعل اللوجو يسبق الكلام من جهة اليسار */
+    flex-direction: row-reverse; 
+}
+.mobile-site-name {
+    color: var(--gold);
+    font-size: 1.1rem;
+    font-weight: 700;
+    white-space: nowrap; /* يمنع نزول الاسم لسطر جديد */
+}
+
+/* تنسيق إضافي لضمان بقاء الشريط في اليسار */
+.mobile-nav {
+    justify-content: flex-end; /* يدفع المجموعة كاملة لليسار في نظام RTL */
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.mobile-logo {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    border: 1px solid var(--gold);
+}
+
+.mobile-site-name {
+    color: var(--gold);
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+/* إخفاء شريط الهاتف على الكمبيوتر */
+@media (min-width: 992px) {
+    .mobile-nav { display: none; }
+}
+
+.mobile-logo {
+    height: 50px;
+    width: auto;
+    border-radius: 50%;
+    border: 1px solid var(--gold);
+}
+
+/* إخفاء شريط الهاتف على الكمبيوتر */
+@media (min-width: 992px) {
+    .mobile-nav { display: none; }
+}
+
+/* إخفاء شريط الكمبيوتر على الهاتف (تأكيد) */
+@media (max-width: 991px) {
+    .desktop-nav { display: none; }
+}
+
+/* كلاس خاص سيتم إضافته بواسطة JS لإخفاء الشريط */
+.nav-hidden {
+    transform: translateY(-100%);
+}
+/* للكمبيوتر: إزاحة المحتوى تحت شريط الـ 80 بكسل */
+@media (min-width: 992px) {
+    body {
+        padding-top: 80px; /* نفس ارتفاع desktop-nav */
+    }
+}
+
+/* للهاتف: إزاحة المحتوى تحت شريط الـ 70 بكسل */
+@media (max-width: 991px) {
+    body {
+        padding-top: 70px; /* نفس ارتفاع mobile-nav */
+    }
+}
+
+/* تأكد من أن الهيدر لا يحتوي على هوامش سلبية ترفعه للأعلى */
+header#top {
+    margin-top: 0 !important;
+}
+#section-header {
+    margin-top: 20px; /* مسافة إضافية تحت شريط التنقل */
+    width: 100%;
+    z-index: 100;
+}
+
+#dynamic-title {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: fadeInDown 1s ease;
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* اللون عند اختيار القسم (للكمبيوتر والهاتف) */
+.nav-link.active-link {
+    color: var(--gold) !important; /* اللون الذهبي */
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+}
+
+/* إضافة الخط السفلي ليظل ظاهراً تحت القسم المفتوح */
+.nav-link.active-link::after {
+    width: 100% !important;
+}
+/* --- قسم الإنستغرام النظيف --- */
+.instagram-section {
+    padding: 80px 5%;
+    background-color: var(--dark);
+    text-align: center;
+    border-top: 1px solid #222;
+}
+
+.instagram-section .section-title i {
+    font-size: 2.5rem;
+    color: var(--gold);
+    margin-bottom: 15px;
+}
+
+.instagram-section .section-title h2 {
+    font-size: 2.2rem;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.instagram-section .section-title p {
+    color: #888;
+    margin-bottom: 40px;
+}
+
+/* تحسين الشبكة لتكون متجاوبة */
+.insta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    max-width: 1200px;
+    margin: 0 auto 40px auto;
+}
+
+.insta-item {
+    position: relative;
+    aspect-ratio: 1 / 1; /* يجعل الصور مربعة تماماً */
+    overflow: hidden;
+    border-radius: 12px;
+    border: 1px solid #333;
+    display: block;
+}
+
+.insta-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.insta-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(212, 175, 55, 0.3); /* توهج ذهبي خفيف */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    backdrop-filter: blur(3px); /* تأثير تغبيش عند الوقوف على الصورة */
+}
+
+/* تأثيرات التمرير (Hover) */
+.insta-item:hover img {
+    transform: scale(1.1);
+}
+
+.insta-item:hover .insta-overlay {
+    opacity: 1;
+}
+
+/* زر المتابعة */
+.follow-btn {
+    display: inline-block;
+    padding: 14px 35px;
+    background: transparent;
+    border: 2px solid var(--gold);
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.follow-btn:hover {
+    background: var(--gold);
+    color: #000;
+    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+    transform: translateY(-3px);
+}
+
+/* تعديل للهواتف الصغيرة */
+@media (max-width: 480px) {
+    .insta-grid {
+        grid-template-columns: repeat(2, 1fr); /* صورتين في الصف الواحد في الهاتف */
+        gap: 8px;
+    }
+}
+/* تنسيق الكونتنر الرئيسي */
+/* تنسيق الكونتنر الرئيسي */
+.header-info-container {
+    background: rgba(0, 0, 0, 0.4); /* خلفية داكنة خفيفة لتناسب الرخام */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    padding: 35px;
+    border-radius: 15px;
+    max-width: 800px;
+    margin: 30px auto; /* يضمن بقاء الكونتنر نفسه في وسط الصفحة */
+    direction: rtl;    /* يضمن أن ترتيب العناصر يبدأ من اليمين */
+}
+
+/* النص التعريفي يبدأ من اليمين */
+.intro {
+    font-size: 1.25rem;
+    color: #fff;
+    margin-bottom: 20px;
+    line-height: 1.8;
+    text-align: right; /* محاذاة النص لليمين بالتساوي */
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    padding-bottom: 20px;
+}
+
+/* قائمة المميزات مصطفة لليمين */
+.features-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* يصفّ العناصر في بداية اليمين */
+}
+
+.features-list h3 {
+    font-size: 1.1rem;
+    color: #f1d592;
+    margin: 10px 0;
+    font-weight: 500;
+    text-align: right;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.features-list i {
+    color: var(--gold);
+    font-size: 1.2rem;
+    /* نضمن أن الأيقونة دائماً على يمين النص */
+    order: -1; 
+}
+
+/* تحسين للهاتف */
+@media (max-width: 768px) {
+    .header-info-container {
+        padding: 20px;
+        width: 95%;
+    }
+    .intro { font-size: 1.1rem; }
+}
+.header-action {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center; /* توسيط الزر */
+}
+
+.whatsapp-header-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: #25d366; /* لون الواتساب الأصلي */
+    color: white;
+    text-decoration: none;
+    padding: 15px 35px;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+    animation: pulse-green 2s infinite; /* تأثير النبض */
+}
+
+.whatsapp-header-btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    background-color: #1ebe57;
+    box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
+    color: white;
+}
+
+.whatsapp-header-btn i {
+    font-size: 1.6rem;
+}
+
+/* حركة النبض لجذب الانتباه */
+@keyframes pulse-green {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+/* تحسين للهاتف */
+@media (max-width: 768px) {
+    .whatsapp-header-btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+}
+.lightbox-info {
+    text-align: center;
+    padding: 20px;
+    background: rgba(0,0,0,0.8);
+    border-radius: 0 0 15px 15px;
+}
+
+.order-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #25d366;
+    color: #fff;
+    padding: 12px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-top: 20px;
+    transition: 0.3s;
+    border: none;
+}
+
+.order-btn:hover {
+    background-color: #1ebe57;
+    transform: scale(1.05);
+    color: #fff;
+}
+
+/* تحسين شكل الصور في اللايت بوكس */
+#lightbox-img {
+    max-height: 60vh;
+    border-radius: 15px 15px 0 0;
+    border: 1px solid var(--gold);
+}
+/* تنسيق نص الوصف في اللايت بوكس */
+#lightbox-desc {
+    color: #ffffff !important; /* لون أبيض ناصع */
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-weight: 300;
+}
+
+/* تنسيق عنوان المنتج في اللايت بوكس */
+#lightbox-title {
+    color: var(--gold); /* الحفاظ على اللون الذهبي للعنوان */
+    font-size: 1.8rem;
+    margin-top: 15px;
+    font-weight: 700;
+}
+
+/* تنسيق زر اطلب الآن */
+.order-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #25d366;
+    color: #fff !important;
+    padding: 12px 35px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.order-btn:hover {
+    background-color: #1ebe57;
+    transform: translateY(-3px);
+    color: #fff !important;
+}
+#lightbox-desc {
+    color: #ffffff !important; /* تأكيد اللون الأبيض */
+    margin: 15px 0;
+    font-size: 1.1rem;
+    direction: rtl;
+    text-align: center;
+}
+
+.order-btn {
+    background-color: #25d366;
+    color: white !important;
+    padding: 12px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+}
+/* الحاوية الرئيسية للايت بوكس */
+#lightbox {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* خلفية داكنة جداً للتركيز */
+    backdrop-filter: blur(8px); /* تأثير تغبيش خلفي */
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* صندوق المحتوى الصغير في المنتصف */
+.lightbox-content-wrapper {
+    background: #111;
+    max-width: 900px; /* أقصى عرض للكمبيوتر */
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex; /* لعمل تقسيم صورة بجانب نص في الكمبيوتر */
+    flex-direction: column; /* الوضع الافتراضي للجوال */
+    border: 1px solid var(--gold);
+    box-shadow: 0 0 50px rgba(0,0,0,0.8);
+    position: relative;
+    animation: zoomIn 0.3s ease-out;
+}
+
+/* تنسيق الصورة */
+#lightbox-img {
+    width: 100%;
+    max-height: 70vh; /* لا تتجاوز 70% من ارتفاع الشاشة */
+    object-fit: cover;
+}
+
+/* منطقة النصوص أسفل الصورة */
+.lightbox-info-area {
+    padding: 30px;
+    text-align: center;
+    background: #111;
+}
+
+#lightbox-title {
+    color: var(--gold);
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+#lightbox-desc {
+    color: #ffffff !important;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+/* زر الإغلاق */
+#lightbox-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10001;
+    transition: 0.3s;
+}
+
+/* --- تعديلات خاصة بشاشات الكمبيوتر فقط --- */
+@media (min-width: 992px) {
+    .lightbox-content-wrapper {
+        flex-direction: row; /* الصورة بجانب النص */
+        max-height: 80vh;
+        align-items: stretch;
+    }
+
+    #lightbox-img {
+        width: 55%; /* الصورة تأخذ 55% من العرض */
+        max-height: 80vh;
+        object-fit: cover;
+    }
+
+    .lightbox-info-area {
+        width: 45%; /* النص يأخذ 45% */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 40px;
+    }
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+/* تصميم الأسهم */
+.nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(212, 175, 55, 0.2); /* لون ذهبي شفاف */
+    color: white;
+    border: 1px solid var(--gold);
+    font-size: 30px;
+    padding: 15px 20px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: 0.3s;
+    z-index: 10002;
+}
+
+.nav-arrow:hover {
+    background: var(--gold);
+    color: #000;
+}
+
+.prev-arrow { right: 30px; }
+.next-arrow { left: 30px; }
+
+/* إخفاء الأسهم في الجوال إذا كانت تزحم الشاشة */
+@media (max-width: 768px) {
+    .nav-arrow {
+        padding: 10px 15px;
+        font-size: 20px;
+    }
+    .prev-arrow { left: 10px; }
+    .next-arrow { right: 10px; }
+}
+/* إخفاء الأسهم تماماً على الشاشات الأصغر من 768px */
+@media (max-width: 768px) {
+    .nav-arrow {
+        display: none !important;
+    }
+    
+    /* جعل الحاوية تدعم اللمس بشكل أفضل */
+    .lightbox-content-wrapper {
+        touch-action: pan-y pinch-zoom; /* تحسين استجابة اللمس */
+    }
+}
+
+/* تنسيق الأسهم للكمبيوتر (تأكيد) */
+@media (min-width: 769px) {
+    .nav-arrow {
+        display: block;
+    }
+}

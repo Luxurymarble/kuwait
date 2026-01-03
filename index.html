@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مغاسل - طاولات - رخام الكويت | Luxury Marble</title>
+    <link rel="icon" type="image/jpeg" href="logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+   <nav class="desktop-nav">
+    <div class="nav-container">
+        <div class="nav-links">
+            <a href="#top" class="nav-link">الرئيسية</a>
+            <a href="#about-section" class="nav-link">من نحن</a>
+            <a href="#sinks" class="nav-link">المغاسل</a>
+            <a href="#furniture" class="nav-link"> الطاولات والاثاث</a>
+            <a href="#stairs" class="nav-link">الدرج والارضيات</a>
+        </div>
+
+        <a href="#top" class="nav-link logo-link">
+            <img src="logo.jpg.jpg" alt="Luxury Marble" class="nav-logo">
+        </a>
+    </div>
+</nav>
+<div class="mobile-nav">
+    <a href="#top" class="nav-link mobile-brand-container">
+        <img src="logo.jpg.jpg" alt="Logo" class="mobile-logo">
+        <span class="mobile-site-name">LUXURY MARBLE</span>
+    </a>
+</div>
+    <div id="lightbox" onclick="closeLightboxOutside(event)">
+    <span id="lightbox-close" onclick="closeLightbox()">&times;</span>
+    <button class="nav-arrow next-arrow" onclick="changeProduct(1)">&#10095;</button>
+    <button class="nav-arrow prev-arrow" onclick="changeProduct(-1)">&#10094;</button>
+    <div class="lightbox-content">
+        <img id="lightbox-img" src="">
+        <div class="lightbox-info">
+            <h3 id="lightbox-title"></h3>
+            <p id="lightbox-desc"></p>
+            <a href="#" id="order-now-btn" target="_blank" class="order-btn">
+                <i class="fab fa-whatsapp"></i> اطلب الآن
+            </a>
+        </div>
+    </div>
+</div>
+
+    <div class="btn">
+        <span class="fas fa-bars"></span>
+    </div>
+
+    <nav class="sidebar">
+        <div class="text">Luxury Marble</div>
+        <ul>
+            <li><a href="#top" class="nav-link">الرئيسية</a></li>
+            <li><a href="#about-section" class="nav-link">من نحن</a></li>
+            <li><a href="#sinks" class="nav-link">قسم المغاسل</a></li>
+            <li><a href="#furniture" class="nav-link">الطاولات والاثاث الرخامي</a></li>
+            <li><a href="#stairs" class="nav-link">الدرج والارضيات</a></li>
+        </ul>
+    </nav>
+
+    <header id="top">
+        <img src="logo.jpg.jpg" alt="Luxury Marble Logo" class="main-logo">
+        <h1>LUXURY MARBLE</h1>
+        <div class="intro">نصنع الفخامة من قلب الطبيعة. خبرة تتجاوز 15 عاماً  بالكويت في توريد وتركيب أفخم أنواع الرخام العالمي. </div>
+      <div class="features-list">
+        <h3><i class="fas fa-check-circle"></i> معاينة ومقاسات مجانية لكل مناطق الكويت</h3>
+        <h3><i class="fas fa-check-circle"></i> توريد وتركيب تحت اشراف فنيين محترفين</h3>
+        <h3><i class="fas fa-check-circle"></i> اسعار تنافسية من المصنع مباشرة بدون وسيط</h3>
+    </div>
+<div class="header-action">
+    <a href="https://wa.me/201150142351?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%20%D9%84%D8%A7%D9%83%D8%B4%D8%B1%D9%8A%20%D9%85%D8%A7%D8%B1%D8%A8%D9%84%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%AD%D8%AC%D8%B2%20%D9%85%D9%88%D8%B9%D8%AF%20%D9%84%D9%85%D8%B9%D8%A7%D9%8A%D9%86%D8%A9%20%D9%85%D8%AC%D8%A7%D9%86%D9%8A%D8%A9%20%D9%84%D8%A3%D8%B9%D9%85%D8%A7%D9%84%20%D8%A7%D9%84%D8%B1%D8%AE%D8%A7%D9%85%20%D9%81%D9%8A%20%D9%85%D9%86%D8%B2%D9%84%D9%8A" 
+       class="whatsapp-header-btn" 
+       target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <span>اطلب معاينة مجانية الآن</span>
+    </a>
+</div>
+<br>
+        <img src="66.jpg" style="width: 150px; height: auto; border-radius: 4px; display: block; margin: 0 auto;" alt="Flag"> 
+        <br>
+
+        <div class="category-buttons">
+            <a href="#sinks" class="cat-btn nav-link">
+                <i class="fas fa-sink"></i>
+                <span>قسم المغاسل</span>
+            </a>
+            <a href="#furniture" class="cat-btn nav-link">
+                <i class="fas fa-couch"></i>
+                <span>الطاولات والأثاث</span>
+            </a>
+            <a href="#stairs" class="cat-btn nav-link">
+                <i class="fas fa-border-all"></i>
+                <span>الدرج والأرضيات</span>
+            </a>
+        </div>
+        
+    </header>
+
+    <div id="about-section" class="section-content">
+        <div id="about-us">
+            <h2>من نحن ؟</h2>
+            <h4 class="custom-title">في Luxury Marble، نؤمن أن الرخام ليس مجرد مادة بناء، بل هو لغة تعبر عن الرقي انطلقنا في دولة الكويت برؤية واضحة: أن نكون الشريك الموثوق لكل من يبحث عن التميز والجمال في أدق تفاصيل مساحته.</h4>
+            <br>
+            <h3 style="color: #d4af37; text-align: right;" > ​ما الذي يميزنا ؟ </h3>
+            <br>
+            <h4 class="custom-title">نحن لسنا مجرد موردين؛ نحن مؤسسة متكاملة تغطي دورة حياة الرخام بالكامل لضمان أعلى مستويات الجودة:
+​التصنيع بدقة احترافية: نمتلك أحدث التقنيات لقص وتشكيل الرخام بأبعاد هندسية دقيقة وتصاميم فنية مبتكرة.<br>
+​التوريد من أرقى المصادر: ننتقي أجود الخامات العالمية لنضعها بين يديك في الكويت.<br>
+​التركيب و التشطيب بروح فنية: يضم فريقنا نخبة من الفنيين والمصممين الذين يتقنون فن التعامل مع الرخام، لضمان تركيب مثالي يدوم طويلاً ويبرز جمال التصميم.</h4>
+            
+          <br> <h3 style="color: #d4af37; text-align: right;" > رؤيتنا :</h3>
+            <br>
+            <h4 class="custom-title">أن نكون الخيار الأول في الكويت لمن يسعى للفخامة والجودة في الرخام، من خلال تقديم منتجات وخدمات تفوق توقعات عملائنا.</h4>
+            <h3 style="color: #d4af37; text-align: right;" > ​قيمنا  :</h3>
+            <br>
+            <h4 class="custom-title">الجودة المطلقة: لا مساومة في اختيار الخامات أو دقة التنفيذ.<br>
+​الالتزام: نحترم المواعيد ونقدر ثقة عملائنا.<br>
+​الابتكار: نسعى دائماً لتقديم تشكيلات فريدة تناسب الذوق الرفيع.<br>
+​"في Luxury Marble، نحن لا نبني جدراناً أو أرضيات.. نحن نصنع لوحات فنية تروي قصة فخامتك</h4><br>
+        </div>
+    </div>
+<div id="section-header" style="display: none; text-align: center; padding: 40px 0 20px; background-color: var(--dark);">
+    <h2 id="dynamic-title" style="color: var(--gold); font-size: 2.5rem; font-family: 'Cairo'; border-bottom: 2px solid var(--gold); display: inline-block; padding-bottom: 10px;"></h2>
+</div>
+   <div id="sinks" class="section-content">
+    
+    <div class="grid">
+        <div class="product-card" data-description="تصميم إيطالي عصري يجمع بين فخامة الرخام ودفء الخشب الطبيعي." onclick="openLightbox(this)">
+            <img src="lu1.jpg.jpg">
+            <div class="info"><h3>مغسلة داينو ايطالي مع وحدات خشبيه</h3></div>
+        </div>
+        <div class="product-card" data-description="تتميز بمقاومة عالية للرطوبة وتصميم انسيابي فريد من حجر الترافنتين الطبيعي." onclick="openLightbox(this)">
+            <img src="lu4.jpg.jpg">
+            <div class="info"><h3>مغسلة من الترافنتين مع وحدات خشبيه</h3></div>
+        </div>
+        <div class="product-card" data-description="رخام رمادي فاخر يضفي لمسة عصرية وهادئة على ديكور الحمام." onclick="openLightbox(this)">
+            <img src="lu5.jpeg.jpeg" loading="lazy">
+            <div class="info"><h3>مغسلة بياترا جراي تركي</h3></div>
+        </div>
+        <div class="product-card" data-description="عمق اللون الماروني مع عروق طبيعية تبرز الفخامة ." onclick="openLightbox(this)">
+            <img src="lu6.jpeg.jpeg" loading="lazy">
+            <div class="info"><h3>مغسلة مارون اسباني</h3></div>
+        </div>
+        <div class="product-card" data-description="تباين ساحر بين السواد الحالك والعروق البيضاء بتشطيب لامع." onclick="openLightbox(this)">
+            <img src="lu7.jpeg.jpeg" loading="lazy">
+            <div class="info"><h3>مغسلة ماركينا اسباني</h3></div>
+        </div>
+      
+        <div class="product-card" data-description="رخام طبيعي نقي بألوان دافئة تتناسب مع كافةالألوان والتصميمات." onclick="openLightbox(this)">
+            <img src="lu9.jpeg.jpeg" loading="lazy">
+            <div class="info"><h3>مغسلة مارون صيني</h3></div>
+        </div>
+        <div class="product-card" data-description="درجة لونية فاتحة ومريحة للعين تعطي اتساعاً للمكان." onclick="openLightbox(this)">
+            <img src="lu10.jpg.jpg" loading="lazy">
+            <div class="info"><h3>مغسلة مارون لايت</h3></div>
+        </div>
+        <div class="product-card" data-description="من أرقى أنواع الرخام الإيطالي و رمز للفخامة ." onclick="openLightbox(this)">
+            <img src="lu11.jpg.jpg" loading="lazy">
+            <div class="info"><h3>مغسلة كراره ايطالي</h3></div>
+        </div>
+        <div class="product-card" data-description="تصميم مناسب للأماكن الضيقة" onclick="openLightbox(this)">
+            <img src="lu13.jpg.jpg" loading="lazy">
+            <div class="info"><h3>مغسلة داينو ايطالي</h3></div>
+        </div>
+        <div class="product-card" data-description="تصميم متكامل يبرز تفاصيل الرخام وحرفية التنفيذ." onclick="openLightbox(this)">
+            <img src="lu12.jpg.jpg" loading="lazy">
+            <div class="info"><h3>مغسلة داينو ايطالي</h3></div>
+        </div>
+        <div class="product-card" data-description="رخام أسود ملكي بتصميم عصري يناسب المساحات الفاخرة." onclick="openLightbox(this)">
+            <img src="lu20.png.png" loading="lazy">
+            <div class="info"><h3>مغسلة ماركينا اسباني</h3></div>
+        </div>
+        <div class="product-card" data-description="بديل ذكي يجمع بين قوة التحمل وجمال رخام الكلاكتا ." onclick="openLightbox(this)">
+            <img src="lu21.jpg.jpg" loading="lazy">
+            <div class="info"><h3>مغسلة كلاكتا صناعي</h3></div>
+        </div>
+        <div class="product-card" data-description="تناغم مذهل بين الترافنتين  والخشب الطبيعي المعالج." onclick="openLightbox(this)">
+            <img src="lu23.jpg.jpg" loading="lazy">
+            <div class="info"><h3>مغسلة من الترافنتين مع وحدات خشبيه</h3></div>
+        </div>
+        <div class="product-card" data-description="قطعة فنية إيطالية نادرة لمحبي التميز والانفراد." onclick="openLightbox(this)">
+            <img src="lu24.jpg.jpg" loading="lazy">
+            <div class="info"><h3>مغسلة اونشكاتا ايطالي</h3></div>
+        </div>
+        <div class="product-card" data-description="تصميم بسيط وأنيق يبرز مسامية وجمال حجر الترافنتين." onclick="openLightbox(this)">
+            <img src="lu46.jpg.jpg" loading="lazy">
+            <div class="info"><h3>مغسلة من الترافنتين</h3></div>
+        </div>
+        <div class="product-card" data-description="تشطيب احترافي يضمن سهولة التنظيف ولمعان يدوم طويلاً." onclick="openLightbox(this)">
+            <img src="lu47.jpg.jpg" loading="lazy">
+            <div class="info"><h3>مغسلة ماركينا اسباني</h3></div>
+        </div>
+        <div class="product-card" data-description="رخام داينو ايطالي مقصوص بأحدث التقنيات لضمان الدقة." onclick="openLightbox(this)">
+            <img src="lu48.jpg.jpg" loading="lazy">
+            <div class="info"><h3>مغسلة داينو ايطالي</h3></div>
+        </div>
+        <div class="product-card" data-description="اللون الرمادي الحديث مع قاعدة خشبية لتصميم اكثر عصريه ." onclick="openLightbox(this)">
+            <img src="lu49.jpg.jpg" loading="lazy">
+            <div class="info"><h3>مغسلة تندرا جراي مع وحدات خشبيه</h3></div>
+        </div>
+        <div class="product-card" data-description="متانة فائقة وتصميم يحاكي الرخام الطبيعي بأعلى جودة." onclick="openLightbox(this)">
+            <img src="lu50.jpg.jpg" loading="lazy">
+            <div class="info"><h3>مغسلة كلاكتا صناعي</h3></div>
+        </div>
+        <div class="product-card" data-description="درجة رمادية غامقة توحي بالهيبة والقوة في التصميم." onclick="openLightbox(this)">
+            <img src="lu51.jpg.jpg" loading="lazy">
+            <div class="info"><h3>مغسلة تندرا جراي غامق</h3></div>
+        </div>
+    </div>
+</div>
+<div id="section-header" style="display: none; text-align: center; padding: 40px 0 20px; background-color: var(--dark);">
+    <h2 id="dynamic-title" style="color: var(--gold); font-size: 2.5rem; font-family: 'Cairo'; border-bottom: 2px solid var(--gold); display: inline-block; padding-bottom: 10px;"></h2>
+</div>
+    <div id="furniture" class="section-content">
+    <div class="grid">
+        <div class="product-card" data-description="قطعة ديكور فريدة من حجر الترافنتين التركي تعكس الذوق الرفيع." onclick="openLightbox(this)">
+            <img src="lu14.jpg.jpg" loading="lazy">
+            <div class="info"><h3>كونسول ترافنتين تركي</h3></div>
+        </div>
+        <div class="product-card" data-description="طاولة تجمع بين شفافية الزجاج وصلابة الحجر بتصميم هندسي مبتكر." onclick="openLightbox(this)">
+            <img src="lu15.jpg.jpg" loading="lazy">
+            <div class="info"><h3>طاولة وسط زجاج و ترافنتين</h3></div>
+        </div>
+        <div class="product-card" data-description="كونسول ناعم بلمسة طبيعية يناسب المداخل والصالات." onclick="openLightbox(this)">
+            <img src="lu16.jpg.jpg" loading="lazy">
+            <div class="info"><h3>كونسول ترافنتين</h3></div>
+        </div>
+        <div class="product-card" data-description="تصميم بسيط يركز على جمال عروق حجر الترافنتين الخام." onclick="openLightbox(this)">
+            <img src="lu17.jpg.jpg" loading="lazy">
+            <div class="info"><h3>كونسول ترافنتين</h3></div>
+        </div>
+        <div class="product-card" data-description="تناسق ملكي بين الرخام الأبيض والأسود في قطعة واحدة." onclick="openLightbox(this)">
+            <img src="lu18.jpg.jpg" loading="lazy">
+            <div class="info"><h3>طاولة كراره وماركينا</h3></div>
+        </div>
+        <div class="product-card" data-description="رخام أحمر نادر يضفي حيوية وفخامة غير مسبوقة على المكان." onclick="openLightbox(this)">
+            <img src="lu19.jpg.jpg" loading="lazy">
+            <div class="info"><h3>طاولة روسو لافنتو</h3></div>
+        </div>
+        <div class="product-card" data-description="رخام إيطالي فاخر بتصميم عصري لتقديم القهوة بأناقة." onclick="openLightbox(this)">
+            <img src="lu25.jpg.jpg" loading="lazy">
+            <div class="info"><h3>طاولة قهوة ستتواريو</h3></div>
+        </div>
+        <div class="product-card" data-description="جمال اللون الرمادي  في طاولة وسط متينة وعملية." onclick="openLightbox(this)">
+            <img src="lu26.jpg.jpg" loading="lazy">
+            <div class="info"><h3>طاولة وسط جراي روبيكا</h3></div>
+        </div>
+        <div class="product-card" data-description="أناقة الرخام مع سهولة العناية والاستخدام اليومي." onclick="openLightbox(this)">
+            <img src="lu27.jpg.jpg" loading="lazy">
+            <div class="info"><h3>طاولة من الرخام الصناعي</h3></div>
+        </div>
+        <div class="product-card" data-description="لمسة فنية للمداخل تبرز جمال الحجر الطبيعي." onclick="openLightbox(this)">
+            <img src="lu28.jpg.jpg" loading="lazy">
+            <div class="info"><h3>كونسول ترافنتين</h3></div>
+        </div>
+        <div class="product-card" data-description="مزيج عصري بين دفء الخشب وبرودة الرخام الرمادي." onclick="openLightbox(this)">
+            <img src="lu29.jpg.jpg" loading="lazy">
+            <div class="info"><h3>طاولة من الخشب والجراي روبيكا</h3></div>
+        </div>
+        <div class="product-card" data-description="طاولة طعام فخمة تتسع للعائلة وتدوم لأجيال." onclick="openLightbox(this)">
+            <img src="lu30.jpg.jpg" loading="lazy">
+            <div class="info"><h3>طاولة طعام روسو روبيكا</h3></div>
+        </div>
+        <div class="product-card" data-description="رخام داينو مصقول بعناية ليكون قلب غرفة الطعام." onclick="openLightbox(this)">
+            <img src="lu31.jpg.jpg" loading="lazy">
+            <div class="info"><h3>طاولة طعام داينو</h3></div>
+        </div>
+        <div class="product-card" data-description="طاولة جانبية أنيقة تجمع بين الخشب الطبيعي ورخام الاستتواريو." onclick="openLightbox(this)">
+            <img src="lu32.jpg.jpg" loading="lazy">
+            <div class="info"><h3>طاولة جانبيه من الخشب و الاستتواريو</h3></div>
+        </div>
+        <div class="product-card" data-description="تصميم ملكي يدمج بين أرقى أنواع الرخام العالمي." onclick="openLightbox(this)">
+            <img src="lu33.png.png" loading="lazy">
+            <div class="info"><h3>كونسول من الكلاكتا و الماركينا</h3></div>
+        </div>
+        <div class="product-card" data-description="خفة الزجاج مع ثبات الترافنتين لمظهر مودرن." onclick="openLightbox(this)">
+            <img src="lu34.jpg.jpg" loading="lazy">
+            <div class="info"><h3>طاولة ترافنتين وزجاج</h3></div>
+        </div>
+        <div class="product-card" data-description="قواعد خشبية متينة تحمل سطحاً من أجود أحجار الترافنتين." onclick="openLightbox(this)">
+            <img src="lu35.jpg.jpg" loading="lazy">
+            <div class="info"><h3>طاولة ترافنتين بقواعد خشبيه</h3></div>
+        </div>
+        <div class="product-card" data-description="طاولة طعام ضخمة تعبر عن الكرم والرقي في منزلك." onclick="openLightbox(this)">
+            <img src="lu36.jpg.jpg" loading="lazy">
+            <div class="info"><h3>طاولة طعام روسو روبيكا بقواعد خشبيه</h3></div>
+        </div>
+        <div class="product-card" data-description="سواد فخم يتوسط صالتك ليجذب كل الأنظار." onclick="openLightbox(this)">
+            <img src="lu45.jpg.jpg" loading="lazy">
+            <div class="info"><h3>طاولة وسط ماركينا</h3></div>
+        </div>
+    </div>
+</div>
+<div id="section-header" style="display: none; text-align: center; padding: 40px 0 20px; background-color: var(--dark);">
+    <h2 id="dynamic-title" style="color: var(--gold); font-size: 2.5rem; font-family: 'Cairo'; border-bottom: 2px solid var(--gold); display: inline-block; padding-bottom: 10px;"></h2>
+</div>
+    <div id="stairs" class="section-content">
+    <div class="grid">
+        <div class="product-card" data-description="درج كلاكتا إيطالي مع إضاءة LED مخفية تبرز جمال العروق ليلاً." onclick="openLightbox(this)">
+            <img src="lu2.jpg.jpg" loading="lazy">
+            <div class="info"><h3>درج كلاكتا مع اضاءة مخفية</h3></div>
+        </div>
+        <div class="product-card" data-description="رخام كراره أبيض نقي يعطي إشراقة واتساعاً لمنزلك ." onclick="openLightbox(this)">
+            <img src="lu3.jpg.jpg" loading="lazy">
+            <div class="info"><h3>درج كراره تركي</h3></div>
+        </div>
+        <div class="product-card" data-description="درج من الرخام الإسباني المعروف بمتانته ومقاومته للخدش." onclick="openLightbox(this)">
+            <img src="lu37.jpg.jpg" loading="lazy">
+            <div class="info"><h3>درج مارون اسباني</h3></div>
+        </div>
+        <div class="product-card" data-description="لمسات ناعمة وألوان دافئة تناسب الديكورات الكلاسيكية." onclick="openLightbox(this)">
+            <img src="lu38.jpg.jpg" loading="lazy">
+            <div class="info"><h3>درج مارون لايت</h3></div>
+        </div>
+        <div class="product-card" data-description="فخامة الرخام الإيطالي الأصلي في درج متصل ومهيب." onclick="openLightbox(this)">
+            <img src="lu39.jpg (2).jpg" loading="lazy">
+            <div class="info"><h3>درج داينو ايطالي</h3></div>
+        </div>
+        <div class="product-card" data-description="عروق طبيعية داكنة تمنح الدرج طابعاً قوياً وفخماً." onclick="openLightbox(this)">
+            <img src="lu40.jpg.jpg" loading="lazy">
+            <div class="info"><h3>درج مارون اسباني</h3></div>
+        </div>
+        <div class="product-card" data-description="مزيج احترافي بين لون الكريم والمارون لإعطاء عمق بصري." onclick="openLightbox(this)">
+            <img src="lu41.jpg.jpg" loading="lazy">
+            <div class="info"><h3>درج كريم مارفل مع مارون اسباني</h3></div>
+        </div>
+        <div class="product-card" data-description="اللون الرمادي الفاتح الحديث (تندرا) لإطلالة عصرية." onclick="openLightbox(this)">
+            <img src="lu42.jpg.jpg" loading="lazy">
+            <div class="info"><h3>درج تندرا جراي فاتح</h3></div>
+        </div>
+        <div class="product-card" data-description="تشطيب ناعم وأطراف مصقولة لضمان الأمان والجمال." onclick="openLightbox(this)">
+            <img src="lu44.jpg.jpg" loading="lazy">
+            <div class="info"><h3>درج مارون لايت</h3></div>
+        </div>
+        <div class="product-card" data-description="أفضل اختيار للفلل والقصور التي تبحث عن الجودة الإسبانية." onclick="openLightbox(this)">
+            <img src="lu43.jpg.jpg" loading="lazy">
+            <div class="info"><h3>درج مارون اسباني</h3></div>
+        </div>
+    </div>
+</div>
+<section id="instagram-feed" class="instagram-section">
+    <div class="section-title">
+        <i class="fab fa-instagram"></i>
+        <h2>تابعونا على إنستغرام</h2>
+        <p>شاهد أحدث مشاريعنا وتصاميمنا اليومية في الكويت</p>
+    </div>
+    
+    <div class="insta-grid">
+        <a href="https://www.instagram.com/luxurymarblekw" target="_blank" class="insta-item">
+            <img src="lu1.jpg.jpg" alt="Luxury Marble" loading="lazy">
+            <div class="insta-overlay"><i class="fab fa-instagram"></i></div>
+        </a>
+        <a href="https://www.instagram.com/luxurymarblekw" target="_blank" class="insta-item">
+            <img src="lu2.jpg.jpg" alt="Luxury Marble" loading="lazy">
+            <div class="insta-overlay"><i class="fab fa-instagram"></i></div>
+        </a>
+        <a href="https://www.instagram.com/luxurymarblekw" target="_blank" class="insta-item">
+            <img src="lu14.jpg.jpg" alt="Luxury Marble" loading="lazy">
+            <div class="insta-overlay"><i class="fab fa-instagram"></i></div>
+        </a>
+        <a href="https://www.instagram.com/luxurymarblekw" target="_blank" class="insta-item">
+            <img src="lu15.jpg.jpg" alt="Luxury Marble" loading="lazy">
+            <div class="insta-overlay"><i class="fab fa-instagram"></i></div>
+        </a>
+        
+    </div>
+
+    <a href="https://www.instagram.com/luxurymarblekw" class="follow-btn" target="_blank">
+        متابعة LUXURY MARBLE
+    </a>
+</section>
+
+    <footer> 
+        
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+    <section class="experience">
+        <div class="exp-item"><h2>+15</h2><p>سنة خبرة</p></div>
+        <div class="exp-item"><h2>+50</h2><p>نوع رخام</p></div>
+        <div class="exp-item"><h2>100٪</h2><p>جودة مضمونة</p></div>
+    </section>
+
+    <footer>
+        <div style="margin-bottom: 30px;">
+            <a href="https://wsend.co/201150142351" class="contact-link" target="_blank"><i class="fab fa-whatsapp"></i> 00201150142351</a>
+            <a href="https://www.instagram.com/luxurymarblekw" class="contact-link" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+        </div>
+        <p style="color: #666; letter-spacing: 2px;">&copy; 2025 LUXURY MARBLE. THE ART OF STONE.</p>
+    </footer>
+
+    <div class="floating">
+        <a href="https://wsend.co/201150142351" class="f-icon f-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.instagram.com/luxurymarblekw" class="f-icon f-ig" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
