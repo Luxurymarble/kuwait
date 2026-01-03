@@ -158,7 +158,10 @@ function updateLightbox() {
 
     // تحديث رابط الواتساب
     const phoneNumber = "201150142351";
-    const message = `السلام عليكم لاكشري ماربل، استفسار عن: (${title})`;
+   const message = `السلام عليكم لاكشري ماربل،
+أريد الاستفسار عن المنتج التالي:
+*الاسم:* ${title}
+*رابط الصورة:* ${imgUrl}`;
     document.getElementById('order-now-btn').href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 }
 
