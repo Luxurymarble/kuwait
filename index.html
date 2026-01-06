@@ -7,20 +7,20 @@
     <link rel="icon" type="image/jpeg" href="logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
    <nav class="desktop-nav">
     <div class="nav-container">
         <div class="nav-links">
-            <a href="#top" class="nav-link">الرئيسية</a>
-            <a href="#about-section" class="nav-link">من نحن</a>
-            <a href="#sinks" class="nav-link">المغاسل</a>
-            <a href="#furniture" class="nav-link"> الطاولات والاثاث</a>
-            <a href="#stairs" class="nav-link">الدرج والارضيات</a>
+            <ul id="nav-menu" style="list-style: none; display: flex; align-items: center; gap: 10px; margin: 0; padding: 0;">
+                <li><a href="#top" class="nav-link">الرئيسية</a></li>
+                <li><a href="#about-section" class="nav-link">من نحن</a></li>
+                <li><a href="#sinks" class="nav-link">المغاسل</a></li>
+                <li><a href="#furniture" class="nav-link"> الطاولات والاثاث</a></li>
+                <li><a href="#stairs" class="nav-link">الدرج والارضيات</a></li>
+            </ul>
         </div>
 
         <a href="#top" class="nav-link logo-link">
@@ -28,12 +28,14 @@
         </a>
     </div>
 </nav>
+
 <div class="mobile-nav">
     <a href="#top" class="nav-link mobile-brand-container">
         <img src="logo.jpg.jpg" alt="Logo" class="mobile-logo">
         <span class="mobile-site-name">LUXURY MARBLE</span>
     </a>
 </div>
+
     <div id="lightbox" onclick="closeLightboxOutside(event)">
     <span id="lightbox-close" onclick="closeLightbox()">&times;</span>
     <button class="nav-arrow next-arrow" onclick="changeProduct(1)">&#10095;</button>
@@ -56,7 +58,7 @@
 
     <nav class="sidebar">
         <div class="text">Luxury Marble</div>
-        <ul>
+        <ul id="sidebar-menu">
             <li><a href="#top" class="nav-link">الرئيسية</a></li>
             <li><a href="#about-section" class="nav-link">من نحن</a></li>
             <li><a href="#sinks" class="nav-link">قسم المغاسل</a></li>
@@ -113,7 +115,7 @@
             <h4 class="custom-title">نحن لسنا مجرد موردين؛ نحن مؤسسة متكاملة تغطي دورة حياة الرخام بالكامل لضمان أعلى مستويات الجودة:
 ​التصنيع بدقة احترافية: نمتلك أحدث التقنيات لقص وتشكيل الرخام بأبعاد هندسية دقيقة وتصاميم فنية مبتكرة.<br>
 ​التوريد من أرقى المصادر: ننتقي أجود الخامات العالمية لنضعها بين يديك في الكويت.<br>
-​التركيب و التشطيب بروح فنية: يضم فريقنا نخبة من الفنيين والمصممين الذين يتقنون فن التعامل مع الرخام، لضمان تركيب مثالي يدوم طويلاً ويبرز جمال التصميم.</h4>
+​التركيب و التشتشطيب بروح فنية: يضم فريقنا نخبة من الفنيين والمصممين الذين يتقنون فن التعامل مع الرخام، لضمان تركيب مثالي يدوم طويلاً ويبرز جمال التصميم.</h4>
             
           <br> <h3 style="color: #d4af37; text-align: right;" > رؤيتنا :</h3>
             <br>
@@ -215,9 +217,7 @@
         </div>
     </div>
 </div>
-<div id="section-header" style="display: none; text-align: center; padding: 40px 0 20px; background-color: var(--dark);">
-    <h2 id="dynamic-title" style="color: var(--gold); font-size: 2.5rem; font-family: 'Cairo'; border-bottom: 2px solid var(--gold); display: inline-block; padding-bottom: 10px;"></h2>
-</div>
+
     <div id="furniture" class="section-content">
     <div class="grid">
         <div class="product-card" data-description="قطعة ديكور فريدة من حجر الترافنتين التركي تعكس الذوق الرفيع." onclick="openLightbox(this)">
@@ -298,9 +298,7 @@
         </div>
     </div>
 </div>
-<div id="section-header" style="display: none; text-align: center; padding: 40px 0 20px; background-color: var(--dark);">
-    <h2 id="dynamic-title" style="color: var(--gold); font-size: 2.5rem; font-family: 'Cairo'; border-bottom: 2px solid var(--gold); display: inline-block; padding-bottom: 10px;"></h2>
-</div>
+
     <div id="stairs" class="section-content">
     <div class="grid">
         <div class="product-card" data-description="درج كلاكتا إيطالي مع إضاءة LED مخفية تبرز جمال العروق ليلاً." onclick="openLightbox(this)">
@@ -377,14 +375,6 @@
     </a>
 </section>
 
-    <footer> 
-        
-    </footer>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="script.js"></script>
-</body>
-</html>
     <section class="experience">
         <div class="exp-item"><h2>+15</h2><p>سنة خبرة</p></div>
         <div class="exp-item"><h2>+50</h2><p>نوع رخام</p></div>
@@ -403,9 +393,10 @@
         <a href="https://wsend.co/201150142351" class="f-icon f-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
         <a href="https://www.instagram.com/luxurymarblekw" class="f-icon f-ig" target="_blank"><i class="fab fa-instagram"></i></a>
     </div>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
     <script src="script.js"></script>
-
+    
+   
 </body>
 </html>
