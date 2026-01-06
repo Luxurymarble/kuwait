@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - Luxury Marble</title>
+    <link rel="icon" type="image/jpeg" href="logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #111;
+            color: #fff;
+            padding-top: 0; 
+            margin: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        /* --- تنسيقات الناف بار --- */
+        .admin-navbar {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 0 20px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid #d4af37;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .admin-nav-container {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .admin-nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .back-site-link {
+            color: white;
+            text-decoration: none;
+            background: rgba(212, 175, 55, 0.2);
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .back-site-link:hover {
+            background: #d4af37;
+            color: black;
+        }
+        .admin-profile-section {
+            position: relative;
+        }
+        .profile-trigger {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+        .profile-trigger:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        .admin-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid #d4af37;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 60px;
+            left: 0;
+            background: white;
+            color: #333;
+            min-width: 180px;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .dropdown-menu.show { display: flex; }
+        .dropdown-menu a {
+            padding: 12px 15px;
+            text-decoration: none;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #eee;
+        }
+        .dropdown-menu a:hover { background: #f8f9fa; color: #d4af37; }
+
+        .admin-container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 30px;
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+        .admin-container h1 {
+            color: #d4af37;
+            text-align: center;
+            margin-bottom: 30px;
+            font-family: 'Playfair Display', serif;
+        }
+        .admin-section {
+            background-color: #2a2a2a;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+        .admin-section h2 {
+            color: #d4af37;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            padding-bottom: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 18px;
+            position: relative;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ccc;
+            font-weight: bold;
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 12px;
+            padding-left: 45px;
+            border: 1px solid #555;
+            border-radius: 5px;
+            background-color: #333;
+            color: #eee;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        
+        .toggle-password {
+            position: absolute;
+            left: 15px;
+            bottom: 12px;
+            cursor: pointer;
+            color: #888;
+            z-index: 10;
+            font-size: 1.1rem;
+            transition: 0.2s;
+        }
+        .toggle-password:hover { color: #d4af37; }
+
+        .admin-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #d4af37;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .admin-btn:hover { background-color: #f1c40f; transform: translateY(-2px); }
+
+        .table-responsive {
+            max-height: 500px; 
+            overflow-y: auto;
+            border: 1px solid #444;
+            border-radius: 8px;
+            background: #1a1a1a;
+        }
+        .product-table {
+            width: 100%; border-collapse: collapse;
+        }
+        .product-table thead th {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background-color: #d4af37;
+            color: #000;
+            padding: 15px;
+            text-align: right;
+        }
+        .product-table td {
+            border-bottom: 1px solid #333; padding: 12px; text-align: right;
+            vertical-align: middle;
+        }
+        
+        .img-container {
+            width: 70px;
+            height: 70px;
+            overflow: hidden;
+            border-radius: 5px;
+            border: 1px solid #444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #111;
+        }
+        .img-container img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+        }
+
+        .product-table .actions { display: flex; gap: 8px; align-items: center; }
+        .product-table .actions button { 
+            padding: 8px 12px; border-radius: 4px; cursor: pointer; border: none; color: white;
+            transition: 0.2s;
+        }
+        .btn-delete { background-color: #e74c3c; }
+        .btn-edit { background-color: #3498db; }
+
+        #login-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #111; z-index: 9999; display: none;
+            flex-direction: column; justify-content: center; align-items: center;
+        }
+        .login-box {
+            background: #1e1e1e; padding: 40px; border-radius: 10px; width: 90%; max-width: 400px; border: 1px solid #d4af37;
+        }
+
+        @media (max-width: 768px) {
+            .admin-container { margin: 10px; padding: 15px; }
+            .product-table thead { display: none; }
+            .product-table td { display: block; width: 100%; padding-right: 50%; position: relative; min-height: 40px; border-bottom: 1px solid #444; }
+            .product-table td::before {
+                content: attr(data-label); position: absolute; right: 10px; font-weight: bold; color: #d4af37;
+            }
+            .img-container { margin: 5px 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="login-overlay">
+        <div class="login-box">
+            <h2 style="text-align:center; color:#d4af37;">تسجيل دخول المشرف</h2>
+            <div class="form-group">
+                <label>اسم المستخدم:</label>
+                <input type="text" id="admin-user" autocomplete="off" onkeydown="handleEnter(event, checkLogin)">
+            </div>
+            <div class="form-group">
+                <label>كلمة المرور:</label>
+                <input type="password" id="admin-pass" autocomplete="off" onkeydown="handleEnter(event, checkLogin)">
+                <i class="fas fa-eye toggle-password" onclick="togglePass('admin-pass', this)"></i>
+            </div>
+            <button onclick="checkLogin()" class="admin-btn" style="width:100%;">دخول</button>
+        </div>
+    </div>
+
+    <nav class="admin-navbar">
+        <div class="admin-nav-container">
+            <div class="admin-nav-right">
+                <a href="index.html" class="back-site-link">
+                    <i class="fas fa-home"></i> العودة للموقع
+                </a>
+                <span style="color: #d4af37; font-weight: bold; font-family: 'Playfair Display';">Luxury Marble Admin</span>
+            </div>
+            <div class="admin-profile-section">
+                <div class="profile-trigger" onclick="toggleDropdown()">
+                    <img src="https://ui-avatars.com/api/?name=Admin&background=d4af37&color=fff" alt="Profile" class="admin-avatar">
+                    <i class="fas fa-chevron-down" style="font-size: 0.8rem;"></i>
+                </div>
+                <div id="profileDropdown" class="dropdown-menu">
+                    <a href="javascript:void(0)" onclick="openSettings()"><i class="fas fa-cog"></i> الإعدادات</a>
+                    <a href="index.html"><i class="fas fa-eye"></i> عرض الموقع</a>
+                    <a href="#" onclick="logoutAdmin()" style="color: #e74c3c;">
+                        <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <div id="settings-section" class="admin-section" style="display: none;">
+            <h2>إعدادات الأمان</h2>
+            <div class="form-group">
+                <label>كلمة المرور الحالية:</label>
+                <input type="password" id="current-pass">
+                <i class="fas fa-eye toggle-password" onclick="togglePass('current-pass', this)"></i>
+            </div>
+            <hr style="border: 0; border-top: 1px dashed #555; margin: 20px 0;">
+            <div class="form-group">
+                <label>اسم المستخدم الجديد:</label>
+                <input type="text" id="new-admin-user">
+            </div>
+            <div class="form-group">
+                <label>كلمة المرور الجديدة:</label>
+                <input type="password" id="new-admin-pass">
+                <i class="fas fa-eye toggle-password" onclick="togglePass('new-admin-pass', this)"></i>
+            </div>
+            <div class="form-group">
+                <label>تأكيد كلمة المرور الجديدة:</label>
+                <input type="password" id="confirm-admin-pass">
+                <i class="fas fa-eye toggle-password" onclick="togglePass('confirm-admin-pass', this)"></i>
+            </div>
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button onclick="saveNewSettings()" class="admin-btn">تحديث البيانات</button>
+                <button onclick="closeSettings()" class="admin-btn" style="background: #555;">إلغاء</button>
+            </div>
+        </div>
+
+        <h1>لوحة تحكم المشرف</h1>
+
+        <div class="admin-section" id="form-container">
+            <h2 id="form-title">إضافة منتج جديد</h2>
+            <form id="product-form">
+                <input type="hidden" id="edit-index" value="-1">
+                <div class="form-group">
+                    <label>القسم:</label>
+                    <select id="product-category" required>
+                        <option value="">اختر القسم</option>
+                        <option value="sinks">المغاسل</option>
+                        <option value="furniture">الطاولات والأثاث</option>
+                        <option value="stairs">الدرج والأرضيات</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>عنوان المنتج:</label>
+                    <input type="text" id="product-title" required>
+                </div>
+                <div class="form-group">
+                    <label>وصف المنتج:</label>
+                    <textarea id="product-description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>رابط صورة المنتج (URL):</label>
+                    <input type="url" id="product-image-url">
+                </div>
+                <div class="form-group">
+                    <label>أو رفع صورة:</label>
+                    <input type="file" id="product-image-file" accept="image/*">
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <button type="submit" id="submit-btn" class="admin-btn">إضافة المنتج</button>
+                    <button type="button" id="cancel-edit" class="admin-btn" style="background:#555; display:none;" onclick="resetProductForm()">إلغاء التعديل</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="admin-section">
+            <h2>إدارة المنتجات الحالية</h2>
+            <div class="form-group" style="display: flex; align-items: center; gap: 15px;">
+                <label>عرض قسم:</label>
+                <select id="filter-category" onchange="filterProductsTable()" style="max-width: 250px;">
+                    <option value="all">الكل</option>
+                    <option value="sinks">المغاسل</option>
+                    <option value="furniture">الطاولات والأثاث</option>
+                    <option value="stairs">الدرج والأرضيات</option>
+                </select>
+            </div>
+            
+            <div class="table-responsive">
+                <table class="product-table">
+                    <thead>
+                        <tr>
+                            <th>صورة</th>
+                            <th>القسم</th>
+                            <th>العنوان</th>
+                            <th>الإجراءات</th>
+                        </tr>
+                    </thead>
+                    <tbody id="product-list"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function handleEnter(event, callback) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                callback();
+            }
+        }
+
+        const _uKey = 'admin_username';
+        const _pKey = 'admin_password';
+
+        if(!localStorage.getItem(_uKey)) {
+            localStorage.setItem(_uKey, atob("YWRtaW4="));
+            localStorage.setItem(_pKey, atob("MTIzNDU="));
+        }
+
+        let products = JSON.parse(localStorage.getItem('marbleProducts')) || [];
+
+        function togglePass(inputId, icon) {
+            const input = document.getElementById(inputId);
+            input.type = input.type === "password" ? "text" : "password";
+            icon.classList.toggle('fa-eye');
+            icon.classList.toggle('fa-eye-slash');
+        }
+
+        function toggleDropdown() { document.getElementById('profileDropdown').classList.toggle('show'); }
+        window.onclick = function(e) { if (!e.target.closest('.profile-trigger')) document.getElementById('profileDropdown').classList.remove('show'); };
+
+        function displayProducts() {
+            const filter = document.getElementById('filter-category').value;
+            const list = document.getElementById('product-list');
+            list.innerHTML = ""; 
+            const filtered = products.filter(p => filter === "all" || p.category === filter);
+            if (!filtered.length) { list.innerHTML = '<tr><td colspan="4" style="text-align:center; padding:20px;">القائمة فارغة.</td></tr>'; return; }
+
+            filtered.forEach((p) => {
+                const idx = products.indexOf(p);
+                list.innerHTML += `<tr>
+                    <td data-label="صورة"><div class="img-container"><img src="${p.image}"></div></td>
+                    <td data-label="القسم">${p.category === 'sinks' ? 'المغاسل' : p.category === 'furniture' ? 'الطاولات' : 'الدرج'}</td>
+                    <td data-label="العنوان">${p.title}</td>
+                    <td data-label="الإجراءات" class="actions">
+                        <button class="btn-edit" onclick="editItem(${idx})"><i class="fas fa-edit"></i></button>
+                        <button class="btn-delete" onclick="deleteItem(${idx})"><i class="fas fa-trash"></i></button>
+                    </td>
+                </tr>`;
+            });
+        }
+
+        document.getElementById('product-form').onsubmit = function(e) {
+            e.preventDefault();
+            const idx = parseInt(document.getElementById('edit-index').value);
+            const cat = document.getElementById('product-category').value;
+            const tit = document.getElementById('product-title').value;
+            const desc = document.getElementById('product-description').value;
+            const url = document.getElementById('product-image-url').value;
+            const fileInput = document.getElementById('product-image-file');
+
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = (ev) => processSave(idx, cat, tit, desc, ev.target.result);
+                reader.readAsDataURL(fileInput.files[0]);
+            } else if (url) {
+                processSave(idx, cat, tit, desc, url);
+            } else if (idx !== -1) {
+                processSave(idx, cat, tit, desc, products[idx].image);
+            } else {
+                alert("يرجى تزويدنا بصورة للمنتج.");
+            }
+        };
+
+        function processSave(idx, cat, tit, desc, img) {
+            const newProduct = { category: cat, title: tit, description: desc, image: img };
+            let tempArray = [...products];
+
+            if (idx === -1) {
+                tempArray.unshift(newProduct);
+            } else {
+                tempArray[idx] = newProduct;
+            }
+
+            try {
+                localStorage.setItem('marbleProducts', JSON.stringify(tempArray));
+                products = tempArray; // تحديث المصفوفة الحية فقط بعد نجاح الحفظ
+                alert("تم الحفظ بنجاح!");
+                resetProductForm();
+                displayProducts();
+            } catch (e) {
+                alert("⚠️ خطأ في الذاكرة: حجم الصور المرفوعة كبير جداً. يرجى استخدام روابط URL أو حذف منتجات قديمة.");
+            }
+        }
+
+        function editItem(i) {
+            const p = products[i];
+            document.getElementById('edit-index').value = i;
+            document.getElementById('product-category').value = p.category;
+            document.getElementById('product-title').value = p.title;
+            document.getElementById('product-description').value = p.description;
+            document.getElementById('product-image-url').value = p.image.startsWith('http') ? p.image : '';
+            document.getElementById('form-title').innerText = "تعديل المنتج";
+            document.getElementById('submit-btn').innerText = "تحديث";
+            document.getElementById('cancel-edit').style.display = "inline-block";
+            document.getElementById('form-container').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function resetProductForm() {
+            document.getElementById('product-form').reset();
+            document.getElementById('edit-index').value = "-1";
+            document.getElementById('form-title').innerText = "إضافة منتج جديد";
+            document.getElementById('submit-btn').innerText = "إضافة المنتج";
+            document.getElementById('cancel-edit').style.display = "none";
+        }
+
+        window.deleteItem = (i) => { 
+            if(confirm("حذف هذا المنتج؟")) { 
+                products.splice(i, 1); 
+                localStorage.setItem('marbleProducts', JSON.stringify(products)); 
+                displayProducts(); 
+            } 
+        };
+
+        window.filterProductsTable = () => displayProducts();
+
+        function checkLogin() {
+            const u = document.getElementById('admin-user').value;
+            const p = document.getElementById('admin-pass').value;
+            if (u === localStorage.getItem(_uKey) && p === localStorage.getItem(_pKey)) { 
+                localStorage.setItem('isAdminLoggedIn', 'true'); 
+                location.reload(); 
+            } else alert("خطأ في البيانات!");
+        }
+
+        function logoutAdmin() { localStorage.removeItem('isAdminLoggedIn'); window.location.href = 'index.html'; }
+
+        function openSettings() {
+            document.getElementById('current-pass').value = "";
+            document.getElementById('new-admin-user').value = localStorage.getItem(_uKey);
+            document.getElementById('settings-section').style.display = 'block';
+            document.getElementById('settings-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function closeSettings() { document.getElementById('settings-section').style.display = 'none'; }
+
+        function saveNewSettings() {
+            const cp = document.getElementById('current-pass').value;
+            const nu = document.getElementById('new-admin-user').value;
+            const np = document.getElementById('new-admin-pass').value;
+            const cn = document.getElementById('confirm-admin-pass').value;
+            if (cp !== localStorage.getItem(_pKey)) return alert("الباسورد الحالي خاطئ!");
+            if (np !== cn) return alert("الباسورد الجديد غير متطابق!");
+            localStorage.setItem(_uKey, nu);
+            localStorage.setItem(_pKey, np);
+            alert("تم التحديث بنجاح.");
+            logoutAdmin();
+        }
+
+        window.onload = () => {
+            if (localStorage.getItem('isAdminLoggedIn') === 'true') {
+                document.getElementById('login-overlay').style.display = 'none';
+            } else {
+                document.getElementById('login-overlay').style.display = 'flex';
+            }
+            displayProducts();
+        };
+    </script>
+</body>
+</html>
