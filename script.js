@@ -93,54 +93,63 @@ $(document).ready(function() {
         }
         lastScrollTop = currentScroll;
     });
+
+    // --- الجزء المعدل لمنع تكرار المنتجات ---
+    let products = JSON.parse(localStorage.getItem('marbleProducts')) || [];
+
+    products.forEach(product => {
+        const productHTML = `
+            <div class="product-card" data-description="${product.description}" onclick="openLightbox(this)">
+                <img src="${product.image}">
+                <div class="info"><h3>${product.title}</h3></div>
+            </div>
+        `;
+        $(`#${product.category} .grid`).append(productHTML);
+    });
+
+    // --- إضافة التحقق من حالة الأدمن داخل document.ready لضمان الظهور الفوري ---
+    if (localStorage.getItem('isAdminLoggedIn') === 'true') {
+        const navMenu = document.getElementById('nav-menu');
+        const sidebarMenu = document.getElementById('sidebar-menu');
+        
+        if (navMenu) {
+            const adminLi = document.createElement('li');
+            adminLi.innerHTML = `
+                <a href="admin.html" style="color: #000 !important; background: #d4af37; font-weight: bold; padding: 5px 12px; border-radius: 4px; margin-right: 5px; text-decoration: none; display: inline-block;">
+                    <i class="fas fa-tools"></i> لوحة التحكم
+                </a>
+            `;
+            navMenu.appendChild(adminLi);
+
+            const logoutLi = document.createElement('li');
+            logoutLi.innerHTML = `
+                <button onclick="logoutAdmin()" style="background: #e74c3c; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-family: 'Cairo'; font-weight: bold; margin-right: 5px;">
+                    <i class="fas fa-sign-out-alt"></i> خروج
+                </button>
+            `;
+            navMenu.appendChild(logoutLi);
+        }
+
+        if (sidebarMenu && !sidebarMenu.innerHTML.includes('admin.html')) {
+            const sideLi = document.createElement('li');
+            sideLi.innerHTML = `<a href="admin.html" class="nav-link" style="color: #d4af37;">لوحة التحكم</a>`;
+            sidebarMenu.appendChild(sideLi);
+
+            const sideLogoutLi = document.createElement('li');
+            sideLogoutLi.innerHTML = `<a href="#" onclick="logoutAdmin()" class="nav-link" style="color: #e74c3c;">تسجيل الخروج</a>`;
+            sidebarMenu.appendChild(sideLogoutLi);
+        }
+    }
 });
 
-// 4. وظائف الـ Lightbox (خارج نطاق الـ ready لتعمل من الـ HTML)
-function openLightbox(element) {
-    const imgElement = element.querySelector('img');
-    const imgUrl = imgElement.src; // يحصل على رابط الصورة الكامل
-    const title = element.querySelector('.info h3').innerText;
-    const desc = element.getAttribute('data-description') || "رخام فاخر من Luxury Marble.";
-    
-    // رقم الواتساب
-    const phoneNumber = "201150142351";
-
-    /* تجهيز الرسالة:
-       تشمل اسم المنتج + رابط الصورة لكي تظهر معاينة (Preview) في الواتساب
-    */
-    const message = `السلام عليكم لاكشري ماربل،
-أريد الاستفسار عن المنتج التالي:
-*الاسم:* ${title}
-*رابط الصورة:* ${imgUrl}`;
-
-    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-
-    // تعبئة بيانات النافذة (Lightbox)
-    document.getElementById('lightbox-img').src = imgUrl;
-    document.getElementById('lightbox-title').innerText = title;
-    document.getElementById('lightbox-desc').innerText = desc;
-    
-    // ربط زر "اطلب الآن" بالرابط الجديد
-    const orderBtn = document.getElementById('order-now-btn');
-    orderBtn.href = whatsappURL;
-
-    document.getElementById('lightbox').style.display = 'flex';
-}
-
-function closeLightbox() {
-    document.getElementById('lightbox').style.display = 'none';
-}
-let currentProducts = []; // مصفوفة لتخزين المنتجات في القسم الحالي
-let currentIndex = 0;    // مؤشر المنتج المفتوح حالياً
+// 4. وظائف الـ Lightbox
+let currentProducts = []; 
+let currentIndex = 0;    
 
 function openLightbox(element) {
-    // 1. تحديد القسم الذي ينتمي إليه المنتج (Sinks, Furniture, or Stairs)
     const section = element.closest('.grid');
-    // 2. جلب جميع المنتجات في هذا القسم فقط
     currentProducts = Array.from(section.querySelectorAll('.product-card'));
-    // 3. تحديد ترتيب المنتج الحالي
     currentIndex = currentProducts.indexOf(element);
-
     updateLightbox();
     document.getElementById('lightbox').style.display = 'flex';
 }
@@ -151,42 +160,53 @@ function updateLightbox() {
     const title = product.querySelector('.info h3').innerText;
     const desc = product.getAttribute('data-description') || "رخام فاخر بتصميم حصري من لاكشري ماربل.";
     
-    // تحديث المحتوى
     document.getElementById('lightbox-img').src = imgUrl;
     document.getElementById('lightbox-title').innerText = title;
     document.getElementById('lightbox-desc').innerText = desc;
 
-    // تحديث رابط الواتساب
     const phoneNumber = "201150142351";
-   const message = `السلام عليكم لاكشري ماربل،
+    const message = `السلام عليكم لاكشري ماربل،
 أريد الاستفسار عن المنتج التالي:
 *الاسم:* ${title}
 *رابط الصورة:* ${imgUrl}`;
     document.getElementById('order-now-btn').href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 }
 
-// وظيفة التنقل يمين ويسار
 function changeProduct(direction) {
     currentIndex += direction;
-    
-    // لجعل السكرول دائري (Loop)
     if (currentIndex >= currentProducts.length) currentIndex = 0;
     if (currentIndex < 0) currentIndex = currentProducts.length - 1;
-
     updateLightbox();
 }
 
-// إغلاق النافذة
 function closeLightbox() {
     document.getElementById('lightbox').style.display = 'none';
 }
 
-// إغلاق عند الضغط على الخلفية السوداء فقط
+// التحكم باللمس (Swipe) للـ Lightbox
+let touchstartX = 0;
+let touchendX = 0;
+const lightboxContainer = document.getElementById('lightbox');
+
+lightboxContainer.addEventListener('touchstart', e => {
+    touchstartX = e.changedTouches[0].screenX;
+}, {passive: true});
+
+lightboxContainer.addEventListener('touchend', e => {
+    touchendX = e.changedTouches[0].screenX;
+    handleGesture();
+}, {passive: true});
+
+function handleGesture() {
+    if (touchstartX - touchendX > 50) changeProduct(1);
+    if (touchendX - touchstartX > 50) changeProduct(-1);
+}
+
+// إغلاق النافذة عند الضغط على الخلفية أو Esc
 document.getElementById('lightbox').addEventListener('click', function(e) {
     if (e.target === this) closeLightbox();
 });
 
-// إمكانية التنقل باستخدام أسهم لوحة المفاتيح
 document.addEventListener('keydown', function(e) {
     if (document.getElementById('lightbox').style.display === 'flex') {
         if (e.key === "ArrowRight") changeProduct(1);
@@ -194,30 +214,11 @@ document.addEventListener('keydown', function(e) {
         if (e.key === "Escape") closeLightbox();
     }
 });
-let touchstartX = 0;
-let touchendX = 0;
 
-const lightboxContainer = document.getElementById('lightbox');
-
-// بدء اللمس
-lightboxContainer.addEventListener('touchstart', e => {
-    touchstartX = e.changedTouches[0].screenX;
-}, {passive: true});
-
-// نهاية اللمس
-lightboxContainer.addEventListener('touchend', e => {
-    touchendX = e.changedTouches[0].screenX;
-    handleGesture();
-}, {passive: true});
-
-// حساب اتجاه السحب
-function handleGesture() {
-    // إذا كان السحب لليسار (التالي)
-    if (touchstartX - touchendX > 50) {
-        changeProduct(1);
-    }
-    // إذا كان السحب لليمين (السابق)
-    if (touchendX - touchstartX > 50) {
-        changeProduct(-1);
+// التحقق من حالة الأدمن وتسجيل الخروج
+function logoutAdmin() {
+    if(confirm("هل تريد تسجيل الخروج؟")) {
+        localStorage.removeItem('isAdminLoggedIn');
+        window.location.reload();
     }
 }
